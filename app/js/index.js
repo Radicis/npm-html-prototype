@@ -3,6 +3,33 @@
 var fs = require('fs');
 var path = require('path');
 
+var theme = "blackboard";
+
+// Create the html editor
+var htmlEditor = CodeMirror(document.getElementById("code-panel-html"), {
+    mode : "xml",
+    htmlMode: true,
+    lineNumbers: true,
+    scrollbarStyle: "simple",
+    theme: theme
+});
+
+// Create the css editor
+var cssEditor = CodeMirror(document.getElementById("code-panel-css"), {
+    mode: "css",
+    lineNumbers: true,
+    scrollbarStyle: "simple",
+    theme: theme
+});
+
+// create the javascript editr
+var jsEditor = CodeMirror(document.getElementById("code-panel-js"), {
+    mode: "javascript",
+    lineNumbers: true,
+    scrollbarStyle: "simple",
+    theme: theme
+});
+
 $("#left-menu").resizable({
     handleSelector: ".splitter",
     resizeHeight: false
@@ -36,20 +63,37 @@ $('#render-button').click(function () {
 // Creates the html output including content from the html/css/js panels
 var createOutput = function(){
 
-    var html = $('#code-panel-html').html();
-    var css = $('#code-panel-css').html();
-    var js = $('#code-panel-js').html();
-
     var title = "Output Title";
 
     var output = '<!DOCTYPE html>\n<html lang="en">\n<head>\n\t<meta charset="UTF-8">\n\t\t<title>' + title +
         '</title>';
 
-    output += '\n\t<style>\n' + css + '\n\t</style>\n';
+    output += '\n\t<style>\n';
+
+
+    for(var i=0;i<cssEditor.lineCount();i++){
+        output+= "\t\t" + cssEditor.getLine(i) + "\n";
+    }
+
+    output+= '\n\t</style>\n';
 
     output += '</head>\n';
 
-    output += '<body>\n' + html + '\n</body>\n</html>';
+    output += '<body>\n';
+
+    for(var h=0;h<htmlEditor.lineCount();h++){
+        output+= "\t" + htmlEditor.getLine(h) + "\n";
+    }
+
+    output += '\n</body>\n';
+
+    output += '<script>\n';
+
+    for(var j=0;j<jsEditor.lineCount();j++){
+        output+= "\t" + jsEditor.getLine(j) + "\n";
+    }
+
+    output+='\n</script>\n</html>';
 
     return output;
 };

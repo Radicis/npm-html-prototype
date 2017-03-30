@@ -21,7 +21,7 @@
 
 .splitter{
     flex: 0 0 auto;
-    width: 10px;
+    width: 18px;
     background: url(../../img/controls/vsizegrip.png) center center no-repeat #cccccc;
     min-height: 200px;
     cursor: col-resize;
@@ -61,7 +61,7 @@
 
 .splitter-horizontal, .splitter-horizontal-2{
     flex: 0 0 auto;
-    height: 10px;
+    height: 18px;
     background: url(../../img/controls/hsizegrip.png) center center no-repeat #cccccc;
     cursor: row-resize;
 }
