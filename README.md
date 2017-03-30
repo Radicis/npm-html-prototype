@@ -1,2 +1,3 @@
-# npm-html-prototype
-Rapid prototyping and scaffolding for web apps
+# Accompanying repository for the Electron guide
+
+![Sound Machine](https://rawgithub.com/bojzi/sound-machine/master/sketch/sound-machine.png)
