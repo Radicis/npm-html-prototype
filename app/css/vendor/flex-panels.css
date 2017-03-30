@@ -1,0 +1,84 @@
+/* horizontal panel*/
+
+.panel-container {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    /* avoid browser level touch actions */
+    xtouch-action: none;
+}
+
+#left-menu {
+    flex: 0 0 auto;
+    /* only manually resize */
+    padding: 0;
+    width: 300px;
+    min-height: 90vh;
+    min-width: 150px;
+    white-space: nowrap;
+    background: #eee;
+}
+
+.splitter{
+    flex: 0 0 auto;
+    width: 10px;
+    background: url(../../img/controls/vsizegrip.png) center center no-repeat #cccccc;
+    min-height: 200px;
+    cursor: col-resize;
+}
+
+.code-panel {
+    flex: 1 1 auto;
+    /* resizable */
+    padding: 10px;
+    width: 100%;
+    min-height: 200px;
+    min-width: 200px;
+    background: #eee;
+    height:33%;
+}
+
+
+/* vertical panel */
+
+.panel-container-vertical {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+#code-panel-html {
+    flex: 0 0 auto;
+    /* only manually resize */
+    padding: 10px;
+    min-height:100px;
+    width: 100%;
+    white-space: nowrap;
+    background: #eee;
+    height:33%;
+}
+
+.splitter-horizontal, .splitter-horizontal-2{
+    flex: 0 0 auto;
+    height: 10px;
+    background: url(../../img/controls/hsizegrip.png) center center no-repeat #cccccc;
+    cursor: row-resize;
+}
+
+#code-panel-css {
+    flex: 1 1 auto;
+    /* resizable */
+    padding: 10px;
+    min-height: 100px;
+    background: #eee;
+    height:33%;
+}
+
+#code-panel-js {
+    flex: 1 1 auto;
+    /* resizable */
+    padding: 10px;
+    min-height: 100px;
+    background: #eee;
+}

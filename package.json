@@ -10,6 +10,8 @@
     "electron-prebuilt": "^0.30.3"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "codemirror": "^5.25.0",
+    "jquery-resizable-dom": "^0.20.0"
   }
 }

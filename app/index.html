@@ -2,46 +2,54 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Hello Electron!</title>
 
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/vendor/flex-panels.css">
+
     <link rel="stylesheet" href="css/main.css">
 
 </head>
+
 <body>
 
-<label>Horizontal Splitter Panes:</label>
+<button id="render-button">Render</button>
 
 <div class="panel-container">
 
-    <div class="panel-left">
-        left panel
+    <div id="left-menu">
+        <div class="panel-container-vertical">
+
+            <div id="code-panel-html">
+                Html Panel
+            </div>
+
+            <div class="splitter-horizontal">
+            </div>
+
+            <div id="code-panel-css">
+                CSS panel
+            </div>
+
+            <div class="splitter-horizontal-2">
+            </div>
+
+            <div id="code-panel-js">
+                JS panel
+            </div>
+
+        </div>
     </div>
 
     <div class="splitter">
     </div>
 
-    <div class="panel-right">
-        right panel
+    <div id="render-panel">
+        <iframe src="output/output.html" id="output"></iframe>
     </div>
+
 </div>
-
-<label>Vertical Splitter Panes:</label>
-<div class="panel-container-vertical">
-
-    <div class="panel-top">
-        top panel
-    </div>
-
-    <div class="splitter-horizontal">
-    </div>
-
-    <div class="panel-bottom">
-        bottom panel
-    </div>
-</div>
-
 
 </body>
 
@@ -49,24 +57,13 @@
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 <script src="js/vendor/jquery/jquery.js"></script>
 
-<script src="js/vendor/jquery-ui/jquery-ui.min.js"></script>
-
 <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+<script src="../node_modules/jquery-resizable-dom/dist/jquery-resizable.js"></script>
+
+<script src="js/index.js"></script>
 
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
-
-<script>
-    $(".panel-left").resizable({
-        handleSelector: ".splitter",
-        resizeHeight: false
-    });
-    $(".panel-top").resizable({
-        handleSelector: ".splitter-horizontal",
-        resizeWidth: false
-    });
-</script>
-
-<script src="js/index.js"></script>
 
 </html>
