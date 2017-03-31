@@ -3,53 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var theme = "blackboard";
 
-// Create the html editor
-var htmlEditor = CodeMirror(document.getElementById("code-panel-html"), {
-    mode : "xml",
-    htmlMode: true,
-    lineNumbers: true,
-    scrollbarStyle: "simple",
-    theme: theme,
-    minHeight: 50
-});
-
-// Create the css editor
-var cssEditor = CodeMirror(document.getElementById("code-panel-css"), {
-    mode: "css",
-    lineNumbers: true,
-    scrollbarStyle: "simple",
-    theme: theme,
-    minHeight: 50
-});
-
-// create the javascript editr
-var jsEditor = CodeMirror(document.getElementById("code-panel-js"), {
-    mode: "javascript",
-    lineNumbers: true,
-    scrollbarStyle: "simple",
-    theme: theme,
-    minHeight: 50
-});
-
-$("#left-menu").resizable({
-    handleSelector: ".splitter",
-    resizeHeight: false
-});
-
-$("#code-panel-html").resizable({
-    handleSelector: ".splitter-horizontal",
-    ghost: true,
-    delay: 200,
-    minWidth: 20,
-    resizeWidth: false
-});
-
-$("#code-panel-css").resizable({
-    handleSelector: ".splitter-horizontal-2",
-    resizeWidth: false
-});
 
 $('#render-button').click(function () {
 

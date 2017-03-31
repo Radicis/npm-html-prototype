@@ -26,7 +26,6 @@ body {
     margin:0;
 }
 
-
 #output, #render-panel{
     min-height: 90vh;
     min-width:100%;

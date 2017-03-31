@@ -6,7 +6,6 @@
 
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/vendor/flex-panels.css">
 
     <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css">
 
@@ -17,9 +16,9 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<body ng-app="app" ng-controller="HomeCtrl">
 
-<button id="render-button">Render</button>
+<button id="render-button" ng-click="createOutput()">Render</button>
 
 <div class="panel-container">
 
@@ -60,7 +59,8 @@
 
 <!-- Insert this line above script imports  -->
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-<script src="js/vendor/jquery/jquery.js"></script>
+
+<script src="../node_modules/jquery/dist/jquery.js"></script>
 
 <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
@@ -75,8 +75,10 @@
 
 <script src="../node_modules/codemirror/addon/scroll/simplescrollbars.js"></script>
 
-<script src="js/index.js"></script>
 
+<script src="../node_modules/angular/angular.min.js"></script>
+<script src="components/app.js"></script>
+<script src="components/controllers/homeController.js"></script>
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
 
