@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('app', []);
+angular.module('app', [require('angular-ui-layout')]);
