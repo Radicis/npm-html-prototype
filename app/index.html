@@ -6,34 +6,28 @@
 
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css">
-
     <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css">
-
     <link rel="stylesheet" href="../node_modules/codemirror/addon/scroll/simplescrollbars.css">
-
     <link rel="stylesheet" href="../node_modules/codemirror/theme/blackboard.css">
-
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="../node_modules/angular-ui-layout/src/ui-layout.css">
-    <link rel="stylesheet" href="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
-
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body ng-app="app" ng-controller="HomeCtrl" ng-init="initEditors()">
 <div ui-layout="{ flow : 'column' }">
-    <div ui-layout-container size="400px" >
+    <div ui-layout-container size="500px">
         <div ui-layout="{ flow : 'row' }" id="code-panels">
-            <div ui-layout-container size="200px" min-size="50px" class="code-panel-container">
+            <div ui-layout-container size="300px" min-size="50px" class="code-panel-container">
                 <h4>HTML</h4>
                 <div id="code-panel-html" ng-keyup="initTimer()" ng-keydown="clearTimer()" class="code-panel">
                 </div>
             </div>
-            <div ui-layout-container size="200px" min-size="50px" class="code-panel-container">
+            <div ui-layout-container size="300px" min-size="50px" class="code-panel-container">
                 <h4>CSS</h4>
                 <div id="code-panel-css" ng-keyup="initTimer()" ng-keydown="clearTimer()" class="code-panel">
                 </div>
             </div>
-            <div ui-layout-container size="200px" min-size="50px" class="code-panel-container">
+            <div ui-layout-container size="300px" min-size="50px" class="code-panel-container">
                 <h4>JS</h4>
                 <div id="code-panel-js" ng-keyup="initTimer()" ng-keydown="clearTimer()" class="code-panel">
                 </div>
@@ -49,8 +43,8 @@
 <!-- Insert this line above script imports  -->
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
-<!--<script src="../node_modules/jquery/dist/jquery.js"></script>-->
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
 
 <script src="../node_modules/angular/angular.min.js"></script>
 
@@ -60,23 +54,12 @@
 <script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>
 <script src="../node_modules/codemirror/mode/css/css.js"></script>
 <script src="../node_modules/codemirror/mode/xml/xml.js"></script>
-
 <script src="../node_modules/codemirror/addon/scroll/simplescrollbars.js"></script>
-<script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
 
 <script src="components/app.js"></script>
 <script src="components/controllers/homeController.js"></script>
 
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
-
-<script>
-    (function($){
-        $(window).on("load",function(){
-            $("#code-panes").mCustomScrollbar();
-            alert("custom shit");
-        });
-    })(jQuery);
-</script>
 
 </html>

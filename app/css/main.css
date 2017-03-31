@@ -7,13 +7,6 @@ body {
     overflow: auto;
     color:#222;
     font-size: 1em;
-    scrollbar-3dlight-color:gold;
-    scrollbar-arrow-color:blue;
-    scrollbar-base-color:black;
-    scrollbar-darkshadow-color:blue;
-    scrollbar-face-color:white;
-    scrollbar-highlight-color:gold;
-    scrollbar-shadow-color:black;
 }
 
 #code-panels{
@@ -23,16 +16,13 @@ body {
 
 .code-panel-container{
     height:100%;
-    overflow:hidden;
-    position:relative;
-    z-index:1;
     padding:0;
     margin:0;
-
 }
 
 .code-panel{
-    height:80%;
+    /*This needs to match parent height, causes issues at set height*/
+    /*scrolling fails if this is not set*/
 }
 
 .CodeMirror{
@@ -41,10 +31,50 @@ body {
     height:100%;
     padding:0;
     margin:0;
-    overflow:hidden;
 }
 
 #output, #output-panel{
     min-height: 90vh;
     min-width:100%;
+    background:#fefefe;
+}
+
+/*Custom Scrollbar styles*/
+
+.ui-splitbar{
+    background:#444 !important;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background: #aeaeae;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #828282;
+}
+::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ffffff;
+    border-radius: 64px;
+}
+::-webkit-scrollbar-track:hover {
+    background: #666666;
+}
+::-webkit-scrollbar-track:active {
+    background: #333333;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
 }

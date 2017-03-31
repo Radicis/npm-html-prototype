@@ -82,7 +82,7 @@ angular.module('app')
                 mode: "xml",
                 htmlMode: true,
                 lineNumbers: true,
-                scrollbarStyle: "simple",
+                scrollbarStyle: "overlay",
                 theme: theme,
                 minHeight: 50
             });
