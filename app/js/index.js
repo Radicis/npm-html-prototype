@@ -11,7 +11,8 @@ var htmlEditor = CodeMirror(document.getElementById("code-panel-html"), {
     htmlMode: true,
     lineNumbers: true,
     scrollbarStyle: "simple",
-    theme: theme
+    theme: theme,
+    minHeight: 50
 });
 
 // Create the css editor
@@ -19,7 +20,8 @@ var cssEditor = CodeMirror(document.getElementById("code-panel-css"), {
     mode: "css",
     lineNumbers: true,
     scrollbarStyle: "simple",
-    theme: theme
+    theme: theme,
+    minHeight: 50
 });
 
 // create the javascript editr
@@ -27,7 +29,8 @@ var jsEditor = CodeMirror(document.getElementById("code-panel-js"), {
     mode: "javascript",
     lineNumbers: true,
     scrollbarStyle: "simple",
-    theme: theme
+    theme: theme,
+    minHeight: 50
 });
 
 $("#left-menu").resizable({
@@ -37,6 +40,9 @@ $("#left-menu").resizable({
 
 $("#code-panel-html").resizable({
     handleSelector: ".splitter-horizontal",
+    ghost: true,
+    delay: 200,
+    minWidth: 20,
     resizeWidth: false
 });
 
