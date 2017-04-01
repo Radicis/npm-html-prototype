@@ -12,16 +12,85 @@ body {
     position : absolute;
     width    : 100%;
     margin   : 0 auto;
-    top      : 50px;
-    bottom   : 0px;
+    top      : 60px;
+    bottom   : 0;
+    background-color:#0C1021;
+}
+
+.glyphicon{
+    color:#999;
+}
+
+#navbar{
+    background-color:#0C1021;
+    overflow: auto;
+    border-bottom:10px solid #444;
+}
+
+.navbar-brand{
+    font-size:2em;
+    color:gold;
+    margin-top:-5px;
+    overflow:auto;
+}
+
+.navbar-brand > span{
+    font-size:0.3em;
+    position:absolute;
+    top:30px;
+    left:17px;
+    color:silver;
+}
+
+#workspace-controls{
+    margin:0;
+    padding:0;
+    list-style:none;
+    margin-left:200px;
+}
+
+
+#windows-controls{
+    float:right;
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+#windows-controls li, #workspace-controls li{
+    padding:0;
+    margin:0;
+    float:left;
 }
 
 .btn-control{
-    height:50px;
     border:none;
-    padding:0;
     margin:0;
+    background-color:#0C1021;
+}
+
+.btn-workspace-control{
+    line-height:50px;
+    color:#eee;
+    padding-right:10px;
+}
+
+.btn-workspace-control .glyphicon{
+    padding-right:5px;
+}
+
+.btn-window-control{
+    height:50px;
+    padding:0;
     width:50px;
+}
+
+.btn-control:hover{
+    background-color:#222;
+}
+
+.btn-control:hover > .glyphicon{
+    color:gold;
 }
 
 #code-panels{
@@ -34,6 +103,10 @@ body {
     height:100%;
     padding:0;
     margin:0;
+}
+
+.code-panel-header{
+    padding-left:15px;
 }
 
 .code-panel{
@@ -70,12 +143,12 @@ body {
     height: 7px;
 }
 ::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
 }
 ::-webkit-scrollbar-thumb {
     background: #aeaeae;
-    border: 0px none #ffffff;
+    border: 0 none #ffffff;
     border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -86,7 +159,7 @@ body {
 }
 ::-webkit-scrollbar-track {
     background: #666666;
-    border: 0px none #ffffff;
+    border: 0 none #ffffff;
     border-radius: 64px;
 }
 ::-webkit-scrollbar-track:hover {
@@ -97,6 +170,24 @@ body {
 }
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+/*Custom UI layout styles*/
+
+.ui-splitbar-icon-up {
+    border-bottom: 0.60em solid;
+}
+
+.ui-splitbar-icon-down {
+    border-top: 0.60em solid;
+}
+
+.ui-splitbar-icon-left {
+    border-right: 0.60em solid;
+}
+
+.ui-splitbar-icon-right {
+    border-left: 0.60em solid;
 }
 
 
