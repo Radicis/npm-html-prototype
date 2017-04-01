@@ -20,6 +20,25 @@ angular.module('app')
             WindowService.minimise();
         };
 
+        $scope.moveWindow = function(){
+            WindowService.moveWindow();
+        };
+
+        $scope.saveWorkspace = function(){
+            WorkspaceService.saveWorkspace("testFoo", $scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
+            // TODO: Return a promise and handle error case
+        };
+
+        $scope.loadWorkspace = function(workspaceName){
+
+            WorkspaceService.loadWorkspace("testFoo", $scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
+            // TODO: Return a promise and handle error case
+        };
+
+        $scope.export = function(rootDir){
+            WorkspaceService.export();
+        };
+
         $scope.theme = "blackboard";
 
         // Toggles the theme from light to dark
@@ -56,42 +75,8 @@ angular.module('app')
         };
 
 
-        var getLines = function(editor){
-            var lines = "";
-            for(var i=0;i<editor.lineCount();i++){
-                lines+= "\t" + editor.getLine(i) + "\n";
-            }
-            return lines
-        };
-
-        var getOutput = function(title){
-            var output = '<!DOCTYPE html>\n<html lang="en">\n<head>\n\t<meta charset="UTF-8">\n\t\t<title>nwp - Node Web Prototype</title>';
-
-            output += '\n\t<style>\n';
-
-            output += getLines($scope.cssEditor);
-
-            output+= '\n\t</style>\n';
-
-            output += '</head>\n';
-
-            output += '<body>\n';
-
-            output += getLines($scope.htmlEditor);
-
-            output += '\n</body>\n';
-
-            output += '<script>\n';
-
-            output += getLines($scope.jsEditor);
-
-            output+='\n</script>\n</html>';
-
-            return output;
-        };
-
         var createOutput = function(){
-            OutputService.generate(getOutput());
+            OutputService.generate($scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
         };
 
         $scope.initEditors = function() {
@@ -168,7 +153,6 @@ angular.module('app')
             $scope.customVendorScriptsCDN.push(cdnUrl);
         };
 
-
         $scope.addStoredVendorCss = function(cssName){
 
             var cssFile = false;
@@ -194,43 +178,5 @@ angular.module('app')
             $scope.customVendorCssCDN.push(cdnUrl);
         };
 
-        $scope.saveWorkspace = function(){
-            WorkspaceService.saveWorkspace("testFoo", $scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
-            // TODO: Return a promise and handle error case
-        };
-
-        $scope.loadWorkspace = function(workspaceName){
-
-            WorkspaceService.loadWorkspace("testFoo", $scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
-            // TODO: Return a promise and handle error case
-
-
-        };
-
-        $scope.scaffold = function(rootDir){
-
-            // Create root dir
-            // Create index.html from output.html
-            // Ensure cdns correct
-
-            // Create css dir
-            // Create style.css
-
-            // create css/vendor dir
-            // populate wih vendor css based on array
-
-            // Create js dir
-            // Create main.js
-
-            // Create js/vendor dir
-            // Populate dir with vendor scripts based on stored arrays
-
-            // Create readme.md
-
-            // initialize git (if required)
-            // create blank gitignore
-
-            // open directory
-        }
 
     });

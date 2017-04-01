@@ -24,6 +24,11 @@ angular.module('app').service('WindowService', function(){
     this.minimise = function(){
         var window = remote.getCurrentWindow();
         window.minimize();
+    };
+
+    this.moveWindow = function(){
+        var window = remote.getCurrentWindow();
+        window.drag();
     }
 
 });

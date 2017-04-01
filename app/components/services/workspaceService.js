@@ -16,13 +16,38 @@ angular.module("app").service("WorkspaceService", function(){
                 return console.log(err);
             }
         });
-    }
+    };
 
     this.loadWorkspace = function(name, html, css, js){
 
         // determine if saved name directory exists
 
         // load in files into editors
+    };
+
+    this.export = function(){
+        // Create root dir
+        // Create index.html from output.html
+        // Ensure cdns correct
+
+        // Create css dir
+        // Create style.css
+
+        // create css/vendor dir
+        // populate wih vendor css based on array
+
+        // Create js dir
+        // Create main.js
+
+        // Create js/vendor dir
+        // Populate dir with vendor scripts based on stored arrays
+
+        // Create readme.md
+
+        // initialize git (if required)
+        // create blank gitignore
+
+        // open directory
     }
 
 });
