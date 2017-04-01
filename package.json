@@ -1,6 +1,6 @@
 {
   "name": "nwp",
-  "version": "0.1.7",
+  "version": "0.2.1",
   "main": "./main.js",
   "scripts": {
     "start": "electron .",
@@ -10,15 +10,14 @@
     "nwp": "./bin/nwp"
   },
   "devDependencies": {
-    "electron-packager": "^5.0.1",
-    "electron-prebuilt": "^0.30.3"
+    "electron-packager": "^5.0.1"
   },
   "dependencies": {
     "angular": "^1.6.4",
-    "electron-prebuilt": "^0.30.3",
     "angular-ui-layout": "^1.4.3",
     "bootstrap": "^3.3.7",
     "codemirror": "^5.25.0",
+    "electron": "^1.6.2",
     "electron-rebuild": "^1.5.7",
     "jquery": "^3.2.1",
     "jquery-resizable-dom": "^0.20.0",

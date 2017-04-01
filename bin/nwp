@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // It just returns a path
-var electronPath = require( 'electron-prebuilt' ) ;
+var electronPath = require( 'electron' ) ;
 
 var childProcess = require( 'child_process' ) ;
 

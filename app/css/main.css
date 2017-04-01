@@ -2,16 +2,32 @@ html,
 body {
     height: 100%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding: 0;
     margin: 0;
     overflow: auto;
     color:#222;
     font-size: 1em;
 }
 
+#wrapper {
+    position : absolute;
+    width    : 100%;
+    margin   : 0 auto;
+    top      : 50px;
+    bottom   : 0px;
+}
+
+.btn-control{
+    height:50px;
+    border:none;
+    padding:0;
+    margin:0;
+    width:50px;
+}
+
 #code-panels{
     background:#0C1021;
     color:#fefefe;
+    animation: fadein 1s;
 }
 
 .code-panel-container{
@@ -23,6 +39,7 @@ body {
 .code-panel{
     /*This needs to match parent height, causes issues at set height*/
     /*scrolling fails if this is not set*/
+    animation: fadein 1s;
 }
 
 .CodeMirror{
@@ -31,18 +48,21 @@ body {
     height:100%;
     padding:0;
     margin:0;
+    animation: fadein 1s;
 }
 
 #output, #output-panel{
     min-height: 90vh;
     min-width:100%;
     background:#fefefe;
+    animation: fadein 2s;
 }
 
 /*Custom Scrollbar styles*/
 
 .ui-splitbar{
     background:#444 !important;
+    animation: fadein 2s;
 }
 
 ::-webkit-scrollbar {
@@ -77,4 +97,16 @@ body {
 }
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+
+/* Custom app startup optimizations*/
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

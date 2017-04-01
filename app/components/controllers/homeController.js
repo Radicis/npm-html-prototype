@@ -5,6 +5,27 @@ angular.module('app')
 
         var fs = require('fs');
         var path = require('path');
+        var remote = require('electron').remote;
+
+        $scope.closeWindow = function(){
+            var window = remote.getCurrentWindow();
+            window.close();
+        };
+
+        $scope.maximiseWindow = function(){
+            var window = remote.getCurrentWindow();
+            if (!window.isMaximized()) {
+                window.maximize();
+            } else {
+                window.unmaximize();
+            }
+        };
+
+        $scope.minimiseWindow = function(){
+            var window = remote.getCurrentWindow();
+            window.minimize();
+        };
+
 
         var theme = "blackboard";
 
