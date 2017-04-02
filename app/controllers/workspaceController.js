@@ -20,9 +20,6 @@ angular.module('app')
             WindowService.minimise();
         };
 
-        $scope.moveWindow = function(){
-            WindowService.moveWindow();
-        };
 
         $scope.saveWorkspace = function(){
             WorkspaceService.saveWorkspace("testFoo", $scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);

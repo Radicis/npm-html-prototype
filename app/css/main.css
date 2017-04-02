@@ -41,6 +41,7 @@ footer{
     background-color:#0C1021;
     overflow: auto;
     border-bottom:10px solid #444;
+    -webkit-app-region: drag;
 }
 
 .navbar-brand{
@@ -83,6 +84,7 @@ footer{
     border:none;
     margin:0;
     background-color:#0C1021;
+    -webkit-app-region: no-drag;
 }
 
 .btn-workspace-control{
