@@ -1,8 +1,25 @@
 'use strict';
 
 angular.module('app')
-    .controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService){
+    .controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService){
 
+        var holder = document.getElementById('code-panel-html');
+
+
+        holder.ondragover = function(){
+            return false;
+        };
+        holder.ondragleave = holder.ondragend = function(){
+            return false;
+        };
+
+        holder.ondrop = function(e) {
+            e.preventDefault();
+            angular.forEach(e.dataTransfer.files, function(file){
+                console.log('File(s) you dragged here: ', file.path);
+            });
+            return false;
+        };
 
         // Closes the host electron window
         $scope.closeWindow = function(){
@@ -73,7 +90,13 @@ angular.module('app')
 
 
         var createOutput = function(){
+            var start = new Date().getTime();
+            console.log("start: " + start);
             OutputService.generate($scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
+            var end = new Date().getTime();
+            console.log("end: " + end);
+            var time = end - start;
+            StatusService.log("Output generated in " + time + "ms");
         };
 
         $scope.initEditors = function() {
