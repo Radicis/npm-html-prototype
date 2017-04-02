@@ -1,4 +1,4 @@
-#nwp - Node Web Prototyping
+# nwp - Node Web Prototyping
 
 Electron based web prototyping using node.js, angular and electron for packaging into a native app.
 
