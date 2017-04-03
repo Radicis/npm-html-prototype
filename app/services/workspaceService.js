@@ -3,7 +3,9 @@ angular.module("app").service("WorkspaceService", function(){
     var fs = require('fs');
     var path = require('path');
 
+    // Saves the current workspace into it's own directory
     this.saveWorkspace = function(name, html, css, js){
+
         // Determine if directory exists
         // Ask to overwrite or not
 
@@ -18,6 +20,7 @@ angular.module("app").service("WorkspaceService", function(){
         });
     };
 
+    // loads a workplace by name
     this.loadWorkspace = function(name, html, css, js){
 
         // determine if saved name directory exists
@@ -25,6 +28,7 @@ angular.module("app").service("WorkspaceService", function(){
         // load in files into editors
     };
 
+    // exports the workspace into a specified directory and scaffolds structure
     this.export = function(){
         // Create root dir
         // Create index.html from output.html

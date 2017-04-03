@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('app')
-    .controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService){
+angular.module('app').controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService){
 
         var holder = document.getElementById('code-panel-html');
-
 
         holder.ondragover = function(){
             return false;
