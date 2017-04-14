@@ -29,29 +29,62 @@ angular.module("app").service("WorkspaceService", function(){
     };
 
     // exports the workspace into a specified directory and scaffolds structure
-    this.export = function(){
+    this.export = function(exportPath, title){
+
+        var basePath = path.join(exportPath, title);
+
         // Create root dir
+        if (!fs.existsSync(basePath)){
+            fs.mkdirSync(basePath);
+        }
+
         // Create index.html from output.html
+        fs.createReadStream(path.join(__dirname, 'output', "output.html")).pipe(fs.createWriteStream(path.join(basePath, 'index.html')));
+
         // Ensure cdns correct
 
         // Create css dir
+        var cssDir = path.join(basePath, "css");
+        if (!fs.existsSync(cssDir)){
+            fs.mkdirSync(cssDir);
+        }
         // Create style.css
 
+
         // create css/vendor dir
+        var cssVendorDir = path.join(cssDir, "vendor");
+        if (!fs.existsSync(cssVendorDir)){
+            fs.mkdirSync(cssVendorDir);
+        }
         // populate wih vendor css based on array
 
         // Create js dir
+        var jsDir = path.join(basePath, "js");
+        if (!fs.existsSync(jsDir)){
+            fs.mkdirSync(jsDir);
+        }
         // Create main.js
 
         // Create js/vendor dir
+        var jsVendorDir = path.join(jsDir, "vendor");
+        if (!fs.existsSync(jsVendorDir)){
+            fs.mkdirSync(jsVendorDir);
+        }
         // Populate dir with vendor scripts based on stored arrays
 
-        // Create readme.md
+        // Create img dir
+        var imgDir = path.join(basePath, "img");
+        if (!fs.existsSync(imgDir)){
+            fs.mkdirSync(imgDir);
+        }
+
+        // Create readme.md file by copying template
+        fs.createReadStream(path.join(__dirname, 'res', "README.md")).pipe(fs.createWriteStream(path.join(basePath, 'README.md')));
 
         // initialize git (if required)
         // create blank gitignore
 
-        // open directory
+        // open directory in explorer
     }
 
 });

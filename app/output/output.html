@@ -4,18 +4,28 @@
 	<meta charset="UTF-8">
 		<title>nwp - Node Web Prototype</title>
 	<style>
-	.foo{
-	 color:red; 
+	.testDiv > h1{
+	 color:#ff0020; 
+	 border-bottom:1px solid #ccc;
+	}
+	
+	.testDiv > p{
+	 text-transform:uppercase; 
 	}
 
 	</style>
 </head>
 <body>
-	<div class="foo">Hello there</div>
+	<div class="testDiv">
+	  <h1>Testing</h1>
+	  <p id="foo">Here is some text</p>
+	</div>
 
 </body>
 <script>
-	alert("Hello");
+	var foo = document.getElementById("foo");
+	
+	foo.innerHTML = "Here is some other text";
 
 </script>
 </html>

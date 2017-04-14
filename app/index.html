@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:C="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>nwp - Node Web Prototype</title>
@@ -21,7 +21,7 @@
     <ul id="workspace-controls">
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="NYI()"><i class="glyphicon glyphicon-floppy-disk" ></i>Save</button></li>
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="NYI()"><i class="glyphicon glyphicon-folder-open" ></i>Load</button></li>
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="NYI()"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="export('Tester')"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
     </ul>
 
     <ul id="windows-controls">
@@ -68,7 +68,7 @@
 <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
 
 <script src="../node_modules/angular/angular.min.js"></script>
-
+<script src='js/electangular.js'></script>
 <script src="../node_modules/angular-ui-layout/src/ui-layout.js"></script>
 <script src="../node_modules/codemirror/lib/codemirror.js"></script>
 
@@ -83,7 +83,7 @@
 <script src="services/windowService.js"></script>
 <script src="services/workspaceService.js"></script>
 <script src="services/statusService.js"></script>
-
+<script src="services/dialogService.js"></script>
 
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>

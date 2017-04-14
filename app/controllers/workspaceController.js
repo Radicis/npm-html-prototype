@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('app').controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService){
+angular.module('app').controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, DialogService, electron){
+
 
         var holder = document.getElementById('code-panel-html');
 
@@ -47,8 +48,15 @@ angular.module('app').controller('WorkspaceCtrl', function($scope, OutputService
             // TODO: Return a promise and handle error case
         };
 
-        $scope.export = function(rootDir){
-            WorkspaceService.export();
+        $scope.export = function(title){
+            electron.dialog.showOpenDialog({
+                properties: ['openDirectory']
+            }).then(function(result){
+                WorkspaceService.export(result[0], title);
+                DialogService.info("Success", "Successfully Exported to: " + result[0]);
+                StatusService.log("Successfully Exported to: " + result[0]);
+            });
+
         };
 
         $scope.theme = "blackboard";
@@ -89,10 +97,8 @@ angular.module('app').controller('WorkspaceCtrl', function($scope, OutputService
 
         var createOutput = function(){
             var start = new Date().getTime();
-            console.log("start: " + start);
             OutputService.generate($scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
             var end = new Date().getTime();
-            console.log("end: " + end);
             var time = end - start;
             StatusService.log("Output generated in " + time + "ms");
         };
