@@ -135,11 +135,18 @@ footer{
 
 .CodeMirror{
     font-family: Monaco, MonoSpace, sans-serif;
-    font-size:1.1em;
-    height:100%;
+    font-size:0.9em;
     padding:0;
     margin:0;
     animation: fadein 1s;
+    /* Firefox */
+    height: -moz-calc(100vh - 190px);
+    /* WebKit */
+    height: -webkit-calc(100vh - 190px);
+    /* Opera */
+    height: -o-calc(100vh - 190px);
+    /* Standard */
+    height: calc(100vh - 190px);
 }
 
 #output, #output-panel{

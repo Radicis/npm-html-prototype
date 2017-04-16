@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body ng-app="app" ng-controller="WorkspaceCtrl as wC">
+<body ng-app="app" ng-controller="MainCtrl as mC">
 <!-- Fixed navbar -->
 <div id="navbar">
     <div class="navbar-brand">nwp<span>You know what would be cool?</span></div>
 
-    <ul id="workspace-controls">
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="NYI()"><i class="glyphicon glyphicon-floppy-disk" ></i>Save</button></li>
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="NYI()"><i class="glyphicon glyphicon-folder-open" ></i>Load</button></li>
+    <ul id="workspace-controls" ng-controller="WorkspaceCtrl as wC">
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.NYI()"><i class="glyphicon glyphicon-floppy-disk" ></i>Save</button></li>
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.NYI()"><i class="glyphicon glyphicon-folder-open" ></i>Load</button></li>
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.export('Tester')"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
     </ul>
 
@@ -30,28 +30,28 @@
         <li><button type="button" class="btn-control btn-window-control" ng-click="winC.closeWindow()"><i class="glyphicon glyphicon-remove-sign" ></i></button></li>
     </ul>
 </div>
-<div id="wrapper" ng-init="wC.initEditors()">
+<div id="wrapper" ng-init="mC.initEditors()">
     <div ui-layout="{ flow : 'column' }">
         <div ui-layout-container size="500px">
             <div ui-layout="{ flow : 'row' }" id="code-panels">
                 <div ui-layout-container size="225px" min-size="50px" class="code-panel-container">
                     <div id="html-editor-container" ng-controller="EditorCtrl as eC">
                         <div class="code-panel-header"><h4>HTML</h4></div>
-                        <div id="code-panel-html" ng-keyup="wC.initTimer()" ng-keydown="wC.clearTimer()" class="code-panel">
+                        <div id="code-panel-html" ng-keyup="mC.initTimer()" ng-keydown="mC.clearTimer()" class="code-panel">
                         </div>
                     </div>
                 </div>
                 <div ui-layout-container size="225px" min-size="50px" class="code-panel-container">
                     <div id="css-editor-container" ng-controller="EditorCtrl as eC">
                         <div class="code-panel-header"><h4>CSS</h4></div>
-                        <div id="code-panel-css" ng-keyup="wC.initTimer()" ng-keydown="wC.clearTimer()" class="code-panel">
+                        <div id="code-panel-css" ng-keyup="mC.initTimer()" ng-keydown="mC.clearTimer()" class="code-panel">
                         </div>
                     </div>
                 </div>
                 <div ui-layout-container size="225px" min-size="50px" class="code-panel-container">
                     <div id="js-editor-container" ng-controller="EditorCtrl as eC">
                         <div class="code-panel-header"><h4>JS</h4></div>
-                        <div id="code-panel-js" ng-keyup="wC.initTimer()" ng-keydown="wC.clearTimer()" class="code-panel">
+                        <div id="code-panel-js" ng-keyup="mC.initTimer()" ng-keydown="mC.clearTimer()" class="code-panel">
                         </div>
                     </div>
                 </div>
@@ -84,6 +84,7 @@
 <script src="../node_modules/codemirror/addon/scroll/simplescrollbars.js"></script>
 
 <script src="app.js"></script>
+<script src="controllers/mainCtrl.js"></script>
 <script src="controllers/workspaceCtrl.js"></script>
 <script src="controllers/windowCtrl.js"></script>
 <script src="controllers/editorCtrl.js"></script>
