@@ -20,22 +20,6 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
         return false;
     };
 
-    vm.theme = "blackboard";
-
-    // Toggles the theme from light to dark
-    vm.swapTheme = function(){
-        if(vm.theme === "blackboard"){
-            vm.theme = "default";
-        }
-        else{
-            vm.theme = "blackboard";
-        }
-
-        // TODO:Change nav styles to match also
-
-        vm.initEditors();
-    };
-
 
     var createOutput = function(){
         var start = new Date().getTime();

@@ -10,7 +10,7 @@
 angular.module('electangular', [])
 
 .run(['$rootScope', 'electron', function($rootScope, ele) {
-  ele.ipcRenderer.on('electron-msg', (event, arg) => {
+  ele.ipcRenderer.on('electron-msg', function(event, arg) {
     $rootScope.$emit('electron-msg', arg);
   });
 }])
@@ -46,13 +46,13 @@ angular.module('electangular', [])
         }
         var deferred = $q.defer();
 
-        remote.dialog.showOpenDialog(bw, options, (result) => {
+        remote.dialog.showOpenDialog(bw, options, function(result)  {
           if (!result) {
             deferred.reject();
           } else {
             deferred.resolve(result);
           }
-        })
+        });
         return deferred.promise;
       },
       showSaveDialog: function(bw, options) {
@@ -61,7 +61,7 @@ angular.module('electangular', [])
           bw = remote.BrowserWindow.getFocusedWindow();
         }
         var deferred = $q.defer();
-        remote.dialog.showSaveDialog(bw, options, (result) => {
+        remote.dialog.showSaveDialog(bw, options, function(result)  {
           if (!result) {
             deferred.reject();
           } else {
@@ -72,11 +72,11 @@ angular.module('electangular', [])
       },
       showMessageBox: function(bw, options) {
         if (!options) {
-          options = bw
+          options = bw;
           bw = remote.BrowserWindow.getFocusedWindow();
         }
         var deferred = $q.defer();
-        remote.dialog.showMessageBox(bw, options, (result) => {
+        remote.dialog.showMessageBox(bw, options, function(result) {
           if (!result) {
             deferred.reject();
           } else {
