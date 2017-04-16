@@ -31,7 +31,7 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
             lineNumbers: true,
             scrollbarStyle: "overlay",
             theme: vm.theme,
-            minHeight: 50,
+            minHeight: 50
         });
 
         vm.cssEditor = CodeMirror(document.getElementById("code-panel-css"), {

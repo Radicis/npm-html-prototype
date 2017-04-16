@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceService, StatusService, DialogService){
+angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceService, StatusService, DialogService, electron){
 
     var vm = this;
 
