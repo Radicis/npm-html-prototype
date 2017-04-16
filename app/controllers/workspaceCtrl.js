@@ -3,40 +3,6 @@
 angular.module('app').controller('WorkspaceCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, DialogService, electron){
 
 
-        var holder = document.getElementById('code-panel-html');
-
-        holder.ondragover = function(){
-            return false;
-        };
-        holder.ondragleave = holder.ondragend = function(){
-            return false;
-        };
-
-        holder.ondrop = function(e) {
-            e.preventDefault();
-            angular.forEach(e.dataTransfer.files, function(file){
-                console.log('File(s) you dragged here: ', file.path);
-            });
-            return false;
-        };
-
-        // Closes the host electron window
-        $scope.closeWindow = function(){
-            //TODO: Are you sure?
-            WindowService.close();
-        };
-
-        // Maximises the host electron window
-        $scope.maximiseWindow = function(){
-            WindowService.maximise();
-        };
-
-        // Minimises the host electron window
-        $scope.minimiseWindow = function(){
-            WindowService.minimise();
-        };
-
-
         $scope.saveWorkspace = function(){
             WorkspaceService.saveWorkspace("testFoo", $scope.htmlEditor, $scope.cssEditor, $scope.jsEditor);
             // TODO: Return a promise and handle error case
