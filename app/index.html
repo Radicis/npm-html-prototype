@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../node_modules/codemirror/theme/blackboard.css">
     <link rel="stylesheet" href="../node_modules/angular-ui-layout/src/ui-layout.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+
 </head>
 
 <body ng-app="app" ng-controller="MainCtrl as mC">
@@ -22,6 +24,7 @@
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.NYI()"><i class="glyphicon glyphicon-floppy-disk" ></i>Save</button></li>
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.NYI()"><i class="glyphicon glyphicon-folder-open" ></i>Load</button></li>
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.export('Tester')"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showSnippetMenu()"><i class="glyphicon glyphicon-export" ></i>Snippets</button></li>
     </ul>
 
     <ul id="windows-controls" ng-controller="WindowCtrl as winC">
@@ -82,6 +85,7 @@
 <script src="../node_modules/codemirror/mode/css/css.js"></script>
 <script src="../node_modules/codemirror/mode/xml/xml.js"></script>
 <script src="../node_modules/codemirror/addon/scroll/simplescrollbars.js"></script>
+<script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
 
 <script src="app.js"></script>
 <script src="controllers/mainCtrl.js"></script>

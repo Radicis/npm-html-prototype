@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, DialogService, electron){
+angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService,$uibModal){
 
     var vm = this;
 
+    // Prevent default drag and drop listeners on the document
     document.addEventListener('dragover',function(event){
         console.log("dragging");
         event.preventDefault();
@@ -20,14 +21,7 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
         return false;
     };
 
-
-    var createOutput = function(){
-        var start = new Date().getTime();
-        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor);
-        var end = new Date().getTime();
-        var time = end - start;
-        StatusService.log("Output generated in " + time + "ms");
-    };
+    vm.theme = "blackboard";
 
     vm.initEditors = function() {
 
@@ -38,7 +32,6 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
             scrollbarStyle: "overlay",
             theme: vm.theme,
             minHeight: 50,
-            height:"100%"
         });
 
         vm.cssEditor = CodeMirror(document.getElementById("code-panel-css"), {
@@ -76,58 +69,24 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
         createOutput();
     };
 
-    vm.addStoredVendorScript = function(scriptName){
-
-        var scriptFile = false;
-
-        switch(scriptName){
-            case "jquery": scriptFile = "Point to local jquery file or CDN";break;
-            case "bootstrapJs": scriptFile = "Point to local or cdn";break;
-            default:break;
-        }
-
-        // ensure bootstrap is always after jquery
-
-        if(script)
-            vm.vendorScripts.push(script);
+    var createOutput = function(){
+        var start = new Date().getTime();
+        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor);
+        var end = new Date().getTime();
+        var time = end - start;
+        StatusService.log("Output generated in " + time + "ms");
     };
 
-    vm.addCustomVendorScript = function(scriptFile){
 
-        // create file inside vendor dir
+    this.showSnippetMenu = function(){
+        $uibModal.open({
+            templateUrl: 'views/snippets.html',
+            controller: 'MainCtrl'
 
-        if(script)
-            vm.customVendorScripts.push(script);
-    };
-
-    vm.addCustomVendorScriptCDN = function(cdnUrl){
-        vm.customVendorScriptsCDN.push(cdnUrl);
-    };
-
-    vm.addStoredVendorCss = function(cssName){
-
-        var cssFile = false;
-
-        switch(cssName){
-            case "bootstrapCss": cssFile = "Point to local or cdn";break;
-            default:break;
-        }
-
-        if(cssFile)
-            vm.vendorCss.push(script);
-    };
-
-    vm.addCustomVendorCss = function(cssFile){
-
-        // create file inside css/vendor dir
-
-        if(script)
-            vm.customVendorCss.push(script);
-    };
-
-    vm.addCustomVendorCssCDN = function(cdnUrl){
-        vm.customVendorCssCDN.push(cdnUrl);
-    };
+        }).result.then(function(snippet) {
+            console.log(snippet);
+        });
+    }
 
 
 });

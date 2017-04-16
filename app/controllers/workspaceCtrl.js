@@ -10,7 +10,6 @@ angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceServ
     };
 
     $scope.loadWorkspace = function(workspaceName){
-
         WorkspaceService.loadWorkspace("testFoo", $scope.mC.htmlEditor, $scope.mC.cssEditor, $scope.mC.jsEditor);
         // TODO: Return a promise and handle error case
     };

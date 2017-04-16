@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('app', ['electangular', require('angular-ui-layout')]);
+angular.module('app', ['ui.bootstrap', 'electangular', require('angular-ui-layout')]);
