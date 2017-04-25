@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('app', ['ui.bootstrap', 'electangular','ui.layout']);
+angular.module('app', ['ui.bootstrap', 'electangular', 'ngAnimate', 'ui.layout']);

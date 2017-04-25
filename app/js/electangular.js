@@ -84,8 +84,9 @@ angular.module('electangular', [])
           }
         });
         return deferred.promise;
-      }
+      },
     },
+
     globalShortcut: remote.globalShortcut,
     Menu: remote.Menu,
     MenuItem: remote.MenuItem,

@@ -37,6 +37,24 @@ footer{
     color:#999;
 }
 
+.modal-dialog{
+    border:1px solid #999;
+    border-radius: 5px;
+}
+
+.modal-header{
+    background-color:#0C1021;
+    color:gold;
+}
+
+.panel-body{
+    background-color:#fefefe;
+}
+
+.panel-group{
+    transition:all 0.5s;
+}
+
 #navbar{
     background-color:#0C1021;
     overflow: auto;

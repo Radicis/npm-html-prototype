@@ -19,6 +19,4 @@ angular.module('app').controller('WindowCtrl', function(WindowService){
         WindowService.minimise();
     };
 
-
-
 });

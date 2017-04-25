@@ -18,10 +18,16 @@ angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceServ
         electron.dialog.showOpenDialog({
             properties: ['openDirectory']
         }).then(function(result){
-            WorkspaceService.export(result[0], title);
-            DialogService.info("Success", "Successfully Exported to: " + result[0]);
-            StatusService.log("Successfully Exported to: " + result[0]);
+            try {
+                WorkspaceService.export(result[0], title);
+                DialogService.info("Success", "Successfully Exported to: " + result[0]);
+                StatusService.log("Successfully Exported to: " + result[0]);
+                electron.shell.openItem(result[0] + "/" + title);
+                electron.shell.beep();
+            }
+            catch(err){
+                DialogService.error("A problem occurred while trying to export the files");
+            }
         });
-
     };
 });

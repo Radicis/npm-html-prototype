@@ -8,7 +8,7 @@ angular.module("app").service("DialogService", function(electron){
     };
 
     this.error = function(title, msg){
-        electron.dialog.showErrorBox(title, msg);
+        electron.dialog.showErrorBox("Error", msg);
     };
 
 });

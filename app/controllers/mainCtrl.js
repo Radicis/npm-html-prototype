@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService,$uibModal){
+angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, SnippetService){
 
     var vm = this;
 
@@ -77,16 +77,8 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
         StatusService.log("Output generated in " + time + "ms");
     };
 
-
     this.showSnippetMenu = function(){
-        $uibModal.open({
-            templateUrl: 'views/snippets.html',
-            controller: 'MainCtrl'
-
-        }).result.then(function(snippet) {
-            console.log(snippet);
-        });
-    }
-
+        SnippetService.show();
+    };
 
 });
