@@ -4,5 +4,13 @@ angular.module('app').controller('SnippetCtrl', function($scope, SnippetService,
 
     var vm = this;
 
+    this.create = function(){
+
+    };
+
+    this.delete = function(){
+
+    };
+
 
 });

@@ -5,5 +5,11 @@ angular.module("app").service("SnippetService", function(electron, $uibModal){
             templateUrl: 'views/snippets.html',
             controller: 'SnippetCtrl'
         });
+    };
+
+    this.create = function(){
+
     }
+
+
 });
