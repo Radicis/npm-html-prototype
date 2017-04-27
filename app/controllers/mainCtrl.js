@@ -77,7 +77,7 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
         StatusService.log("Output generated in " + time + "ms");
     };
 
-    this.showSnippetMenu = function(){
+    vm.showSnippetMenu = function(){
         SnippetService.show();
     };
 

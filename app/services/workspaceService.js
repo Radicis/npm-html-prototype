@@ -6,14 +6,28 @@ angular.module("app").service("WorkspaceService", function(DialogService){
     // Saves the current workspace into it's own directory
     this.saveWorkspace = function(name, html, css, js){
 
+        var workspaceDir = path.join(__dirname, 'workspaces');
+
+        // Create root dir
+        if (!fs.existsSync(workspaceDir)) {
+            fs.mkdirSync(workspaceDir);
+        }
+
         // Determine if directory exists
-        // Ask to overwrite or not
+        var targetDir = path.join(workspaceDir, name);
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir);
+        }
+        else{
+            // Ask to overwrite or not
+        }
+
 
         // create dir inside local npm folder with name
         // save css/html/js files
         // save settings/config file
 
-        fs.writeFile(path.join(__dirname, 'workspaces', name, 'test.html'), "hello test", function(err) {
+        fs.writeFile(path.join(targetDir, 'test.html'), "hello test", function(err) {
             if(err) {
                 return console.log(err);
             }

@@ -9,7 +9,7 @@ angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceServ
         // TODO: Return a promise and handle error case
     };
 
-    $scope.loadWorkspace = function(workspaceName){
+    vm.loadWorkspace = function(workspaceName){
         WorkspaceService.loadWorkspace("testFoo", $scope.mC.htmlEditor, $scope.mC.cssEditor, $scope.mC.jsEditor);
         // TODO: Return a promise and handle error case
     };

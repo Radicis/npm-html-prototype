@@ -233,6 +233,11 @@ footer{
     border-left: 0.60em solid;
 }
 
+.snippets{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
 
 /* Custom app startup optimizations*/
 

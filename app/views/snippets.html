@@ -3,22 +3,19 @@
         Snippets
     </h3>
 </div>
-<div class="panel-body" >
+<div class="panel-body" ng-init="init()">
     <uib-accordion close-others="true">
         <div uib-accordion-group>
             <uib-accordion-heading>
                 Bootstrap
             </uib-accordion-heading>
-            <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+            <ul class="list-group snippets">
+                <li class="list-group-item" ng-repeat="snip in snippets track by $index">{{snip}}</li>
             </ul>
         </div>
     </uib-accordion>
 </div>
 <div class="modal-footer">
+    <button type="button" ng-click="showCreate()">Test Create</button>
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
 </div>
