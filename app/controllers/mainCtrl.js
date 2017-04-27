@@ -1,8 +1,20 @@
 'use strict';
 
-angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, SnippetService){
+angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, SnippetService, $rootScope){
 
     var vm = this;
+
+    // listens for loading started and sets loading variable to true
+    $scope.$on('loading-started', function(event, args) {
+        vm.loading= true;
+        console.log("loading");
+    });
+
+    // listens for loading done and sets loading variable to false
+    $scope.$on('loading-done', function(event, args) {
+        vm.loading= false;
+        console.log("done loading");
+    });
 
     // Prevent default drag and drop listeners on the document
     document.addEventListener('dragover',function(event){
@@ -19,6 +31,15 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
     document.ondrop = function(e) {
         e.preventDefault();
         return false;
+    };
+
+    vm.initOutputFile = function(){
+        $rootScope.$broadcast('loading-started');
+        var path = require('path');
+        OutputService.init().then(function(){
+            document.getElementById('output').src = (path.join(__dirname, 'output', 'output.html'));
+            $rootScope.$broadcast('loading-done');
+        });
     };
 
     vm.theme = "blackboard";
@@ -49,6 +70,7 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
             theme: vm.theme,
             minHeight: 50
         });
+
     };
 
     // Setup time variables
@@ -70,11 +92,17 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
     };
 
     var createOutput = function(){
+        $rootScope.$broadcast('loading-started');
         var start = new Date().getTime();
-        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor);
-        var end = new Date().getTime();
-        var time = end - start;
-        StatusService.log("Output generated in " + time + "ms");
+        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor).then(function(){
+                var end = new Date().getTime();
+                var time = end - start;
+                StatusService.log("Output generated in " + time + "ms");
+                document.getElementById('output').contentDocument.location.reload(true);
+                $rootScope.$broadcast('loading-done');
+            }
+        );
+
     };
 
     vm.showSnippetMenu = function(){

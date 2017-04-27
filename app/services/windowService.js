@@ -10,7 +10,7 @@ angular.module('app').service('WindowService', function(){
         window.close();
     };
 
-    // Maximises the eletron host window and unmaximises it
+    // Maximises the e letron host window and unmaximises it
     this.maximise = function(){
         var window = remote.getCurrentWindow();
         if (!window.isMaximized()) {
