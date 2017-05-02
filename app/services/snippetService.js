@@ -27,19 +27,24 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
         });
     };
 
-    this.create = function(snippet){
+    this.create = function(name, snippet){
+        var def = $q.defer();
         $http.get(dbPath).then(function(json){
-                var snippets = json.data.snippets;
-                snippets.push(snippet);
-                fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
-                    if(err) {
-                        DialogService.error("Unable to save snippets!");
-                        return console.log(err);
-                    }
-                    StatusService.log("Saved snippets to local database");
-                });
+            var snippets = json.data.snippets;
+            var newSnip = {
+                name: name,
+                source: snippet.split('\n')
+            };
+
+            snippets.push(newSnip);
+            fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
+                if(err) {
+                    DialogService.error("Unable to save snippets!");
+                    return console.log(err);
+                }
+                def.resolve();
             });
+        });
+        return def.promise;
     };
-
-
 });

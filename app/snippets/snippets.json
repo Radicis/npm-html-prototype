@@ -1,1 +1,31 @@
-{"snippets":["foo","foo","foo","foo"]}
+{"snippets":
+[
+  {
+    "name": "Custom",
+    "snippets": [
+      {
+        "name": "hello",
+        "source": [
+          "hello",
+          "",
+          "",
+          "hello",
+          "",
+          "hello"
+        ]
+      },
+      {
+        "name": "rory",
+        "source": [
+          "hello",
+          "",
+          "<hkjejd",
+          "fds",
+          "ds",
+          "ds"
+        ]
+      }
+    ]
+  }
+]
+}

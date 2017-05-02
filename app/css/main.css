@@ -167,6 +167,18 @@ footer{
     height: calc(100vh - 190px);
 }
 
+.create-name{
+    color:#fefefe;
+    background: #0C1021;
+}
+
+.code-panel-create{
+    color:#fefefe;
+    background: #0C1021;
+    font-family: Monaco, MonoSpace, sans-serif;
+    font-size:0.9em;
+}
+
 #output, #output-panel{
     min-height: 90vh;
     min-width:100%;
