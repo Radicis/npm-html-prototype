@@ -20,6 +20,13 @@ angular.module('app').service('OutputService', function($q){
         });
     };
 
+    this.init = function(){
+        var targetDir = path.join(__dirname, 'output');
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir);
+        }
+    };
+
     var getLines = function(editor){
         var lines = "";
         for(var i=0;i<editor.lineCount();i++){

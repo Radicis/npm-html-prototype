@@ -7,9 +7,22 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
     this.load = function(){
         var def = $q.defer();
-        $http.get(dbPath).then(function(json) {
+        var targetDir = path.join(__dirname, 'snippets');
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir);
+        }
+
+        fs.open(dbPath, "wx", function (err, fd) {
+            // handle error
+            fs.close(fd, function (err) {
+                // handle error
+            });
+        });
+
+        $http.get(dbPath).then(function (json) {
             def.resolve(json.data.snippets);
         });
+
         return def.promise;
     };
 
@@ -27,16 +40,84 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
         });
     };
 
-    this.create = function(name, snippet){
+    this.showCreateCategory = function(){
+        $uibModal.open({
+            templateUrl: 'views/addCategory.html',
+            controller: 'SnippetCtrl'
+        });
+    };
+
+    this.createCategory = function(name){
         var def = $q.defer();
+        var targetDir = path.join(__dirname, 'snippets');
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir);
+        }
+
         $http.get(dbPath).then(function(json){
-            var snippets = json.data.snippets;
+
+            var newCategory = {
+                name: name,
+                snippets: []
+            };
+
+            var allCategories;
+
+            if(!json.data.snippets){
+                json.data = {snippets:[]};
+            }
+
+            allCategories = json.data.snippets;
+
+            var exists= false;
+            angular.forEach(allCategories, function(singleCategory){
+                if(name == singleCategory){
+                    exists = true;
+                    def.reject("Name already exists");
+                }
+            });
+
+            if(!exists){
+                allCategories.push(newCategory);
+            }
+
+            fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
+                if(err) {
+                    DialogService.error("Unable to save snippets!");
+                    return console.log(err);
+                }
+                def.resolve();
+            });
+        });
+        return def.promise;
+    };
+
+
+    this.create = function(name, categoryName, snippet){
+        var def = $q.defer();
+
+        console.log("Checking for", categoryName);
+
+        $http.get(dbPath).then(function(json){
+
             var newSnip = {
                 name: name,
                 source: snippet.split('\n')
             };
 
-            snippets.push(newSnip);
+            var allCategories = json.data.snippets;
+            var found = false;
+            angular.forEach(allCategories, function(singleCategory){
+
+                console.log("Checking", categoryName, " against", singleCategory.name);
+                if(categoryName == singleCategory.name){
+                    singleCategory.snippets.push(newSnip);
+                    found = true;
+                }
+            });
+            if(!found){
+                def.reject("No Category Found");
+            }
 
             var targetDir = path.join(__dirname, 'snippets');
             if (!fs.existsSync(targetDir)) {

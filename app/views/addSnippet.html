@@ -1,4 +1,4 @@
-<div class="modal-header bg-primary">
+<div class="modal-header bg-primary" ng-init="init()">
     <h3 class="modal-title">
         Add Snippet
     </h3>
@@ -7,7 +7,7 @@
 
     <div class="form-group">
         <label>Category</label>
-        <select ng-options="category.name as category for category in snippets">
+        <select ng-options="category as category.name for category in snippets" ng-model="selected.category">
             <option>-- Select Category --</option>
         </select>
     </div>

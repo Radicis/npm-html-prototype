@@ -2,6 +2,8 @@
 
 angular.module('app').controller('SnippetCtrl', function($scope, electron, SnippetService, $uibModalInstance,  DialogService, StatusService){
 
+    $scope.selected = {};
+
     $scope.init = function(){
         SnippetService.load().then(function(snippets){
             $scope.snippets = snippets;
@@ -14,14 +16,26 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
     };
 
     $scope.create = function(){
-        if(!$scope.snipHTML && !$scope.snipName){
+        if(!$scope.snipHTML || !$scope.snipName || !$scope.selected.category){
             DialogService.error("Please Enter Something!");
             return;
         }
-        SnippetService.create($scope.snipName, $scope.snipHTML).then(function(){
+
+        SnippetService.create($scope.snipName, $scope.selected.category.name,  $scope.snipHTML).then(function(){
             $uibModalInstance.close(false);
             StatusService.log("Saved snippets to local database");
         });
+    };
+
+    $scope.showCreateCategory = function(){
+        SnippetService.showCreateCategory();
+    };
+
+    $scope.createCategory = function(){
+      SnippetService.createCategory($scope.selected.category).then(function(response){
+          $uibModalInstance.close(false);
+          StatusService.log("Saved category to local database");
+      })
     };
 
     $scope.select = function(snippet){

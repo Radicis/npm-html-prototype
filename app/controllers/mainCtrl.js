@@ -34,12 +34,13 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
     };
 
     vm.initOutputFile = function(){
+        console.log("initing");
         $rootScope.$broadcast('loading-started');
         var path = require('path');
-        OutputService.init().then(function(){
-            document.getElementById('output').src = (path.join(__dirname, 'output', 'output.html'));
-            $rootScope.$broadcast('loading-done');
-        });
+        OutputService.init();
+        document.getElementById('output').src = (path.join(__dirname, 'output', 'output.html'));
+        $rootScope.$broadcast('loading-done');
+
     };
 
     vm.theme = "blackboard";
@@ -94,15 +95,12 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
     var createOutput = function(){
         $rootScope.$broadcast('loading-started');
         var start = new Date().getTime();
-        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor).then(function(){
-                var end = new Date().getTime();
-                var time = end - start;
-                StatusService.log("Output generated in " + time + "ms");
-                document.getElementById('output').contentDocument.location.reload(true);
-                $rootScope.$broadcast('loading-done');
-            }
-        );
-
+        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor);
+        var end = new Date().getTime();
+        var time = end - start;
+        StatusService.log("Output generated in " + time + "ms");
+        document.getElementById('output').contentDocument.location.reload(true);
+        $rootScope.$broadcast('loading-done');
     };
 
     vm.showSnippetMenu = function(){
