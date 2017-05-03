@@ -15,7 +15,7 @@
 
 </head>
 
-<body ng-app="app" ng-controller="MainCtrl as mC">
+<body ng-app="app" ng-controller="MainCtrl as mC" ng-init="initOutputFile()">
 <!-- Fixed navbar -->
 <div id="navbar">
     <div class="navbar-brand">nwp<span>You know what would be cool?</span></div>
@@ -34,6 +34,7 @@
     </ul>
 </div>
 <div id="wrapper" ng-init="mC.initEditors()">
+    <div class="loading" ng-show="mC.loading">Loading&#8230;</div>
     <div ui-layout="{ flow : 'column' }">
         <div ui-layout-container size="500px">
             <div ui-layout="{ flow : 'row' }" id="code-panels">

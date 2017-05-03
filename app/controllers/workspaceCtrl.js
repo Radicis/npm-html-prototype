@@ -1,16 +1,20 @@
 'use strict';
 
-angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceService, StatusService, DialogService, electron){
+angular.module('app').controller('WorkspaceCtrl', function($scope, WorkspaceService, StatusService, DialogService, electron, $rootScope){
 
     var vm = this;
 
     vm.saveWorkspace = function(){
+        $rootScope.$broadcast('loading-started');
         WorkspaceService.saveWorkspace("testFoo", $scope.mC.htmlEditor, $scope.mC.cssEditor, $scope.mC.jsEditor);
+        $rootScope.$broadcast('loading-done');
         // TODO: Return a promise and handle error case
     };
 
     vm.loadWorkspace = function(workspaceName){
+        $rootScope.$broadcast('loading-started');
         WorkspaceService.loadWorkspace("testFoo", $scope.mC.htmlEditor, $scope.mC.cssEditor, $scope.mC.jsEditor);
+        $rootScope.$broadcast('loading-done');
         // TODO: Return a promise and handle error case
     };
 
