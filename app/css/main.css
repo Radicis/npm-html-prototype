@@ -172,11 +172,36 @@ footer{
     background: #0C1021;
 }
 
+textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
+
+    color:#fefefe;
+    background: #0C1021;
+}
+
 .code-panel-create{
     color:#fefefe;
     background: #0C1021;
     font-family: Monaco, MonoSpace, sans-serif;
     font-size:0.9em;
+}
+
+.panel-heading a{
+    display:block;
+}
+
+.category-heading{
+    border:1px solid #666;
+    border-radius: 5px;
+}
+
+.category-heading:hover{
+    border-radius: 5px;
+}
+
+
+.panel-heading:hover{
+    color:#0C1021;
+    background: #eee;
 }
 
 #output, #output-panel{

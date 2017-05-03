@@ -5,13 +5,22 @@
 </div>
 <div class="panel-body" ng-init="init()">
     <uib-accordion close-others="true" ng-repeat="category in snippets">
-        <div uib-accordion-group>
+        <div uib-accordion-group class="category-heading" is-open="status.open">
             <uib-accordion-heading>
-                {{category.name}}
+                {{category.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+
             </uib-accordion-heading>
-            <ul class="list-group snippets">
-                <li class="list-group-item" ng-repeat="snip in category.snippets track by $index"><a ng-click="select(snip.source)">{{snip.name}}</a></li>
-            </ul>
+            <uib-accordion close-others="true" ng-repeat="snip in category.snippets">
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        {{snip.name}}
+                        <button class="btn btn-xs pull-right" type="button" ng-click="select(snip.source)" uib-popover="Copy" popover-trigger="'mouseenter'" popover-placement="left">
+                            <span class="glyphicon glyphicon-copy"></span>
+                        </button>
+                    </uib-accordion-heading>
+                    <textarea class="form-control code-panel-create" rows="10" readonly>{{formatSnip(snip.source)}}</textarea>
+                </div>
+            </uib-accordion>
         </div>
     </uib-accordion>
 </div>

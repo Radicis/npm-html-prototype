@@ -8,6 +8,10 @@ angular.module('app').service('OutputService', function(){
     // Writes the provided output string to the output.html file
     // reloads the output view
     this.generate = function(html, css, js){
+        var targetDir = path.join(__dirname, 'output');
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir);
+        }
         fs.writeFile(path.join(__dirname, 'output/output.html'), getOutput(html, css, js), function(err) {
             if(err) {
                 return console.log(err);

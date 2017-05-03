@@ -37,6 +37,12 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
             };
 
             snippets.push(newSnip);
+
+            var targetDir = path.join(__dirname, 'snippets');
+            if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir);
+            }
+
             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                 if(err) {
                     DialogService.error("Unable to save snippets!");

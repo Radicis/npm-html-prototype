@@ -25,8 +25,18 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
     };
 
     $scope.select = function(snippet){
-        electron.clipboard.writeText(snippet.join("\n"));
-        StatusService.log("Snippet copied to clipboard");
+        try {
+            electron.clipboard.writeText(snippet.join("\n"));
+            DialogService.info("Snip!", "Snippet copied to clipboard");
+            $scope.close();
+        }
+        catch(err){
+            DialogService.error("Unable to write to the clipboard");
+        }
+    };
+
+    $scope.formatSnip = function(snip){
+        return snip.join("\n");
     };
 
     $scope.delete = function(){
