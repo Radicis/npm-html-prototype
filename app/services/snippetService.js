@@ -13,9 +13,11 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
         }
 
         fs.open(dbPath, "wx", function (err, fd) {
-            // handle error
+            if (err)
+                def.reject("Unable to access local DB");
             fs.close(fd, function (err) {
-                // handle error
+                if (err)
+                    def.reject("Unable to close local DB");
             });
         });
 
@@ -29,20 +31,6 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
     this.show = function(){
         $uibModal.open({
             templateUrl: 'views/snippets.html',
-            controller: 'SnippetCtrl'
-        });
-    };
-
-    this.showCreate = function(){
-        $uibModal.open({
-            templateUrl: 'views/addSnippet.html',
-            controller: 'SnippetCtrl'
-        });
-    };
-
-    this.showCreateCategory = function(){
-        $uibModal.open({
-            templateUrl: 'views/addCategory.html',
             controller: 'SnippetCtrl'
         });
     };
@@ -71,7 +59,7 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
             var exists= false;
             angular.forEach(allCategories, function(singleCategory){
-                if(name == singleCategory){
+                if(name == singleCategory.name){
                     exists = true;
                     def.reject("Name already exists");
                 }
@@ -83,8 +71,7 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                 if(err) {
-                    DialogService.error("Unable to save snippets!");
-                    return console.log(err);
+                    def.reject("Unable to save snippets!");
                 }
                 def.resolve();
             });

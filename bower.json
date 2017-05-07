@@ -18,6 +18,7 @@
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "angular-ui-layout": "^1.4.3",
     "bootstrap": "^3.3.7",
-    "codemirror": "^5.25.0"
+    "codemirror": "^5.25.0",
+    "angular-sanitize": "^1.6.4"
   }
 }

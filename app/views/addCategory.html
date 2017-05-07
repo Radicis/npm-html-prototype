@@ -4,13 +4,12 @@
     </h3>
 </div>
 <form class="panel-body">
-
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" ng-model="categoryName" />
+        <input type="text" class="form-control" ng-model="selected.categoryName" />
     </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="createCategory()">Create</button>
-    <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+    <button type="button" class="btn btn-default" ng-click="createCategory()"><span class="glyphicon glyphicon-ok"></span> Create</button>
+    <button type="button" class="btn btn-default" ng-click="close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 </div>

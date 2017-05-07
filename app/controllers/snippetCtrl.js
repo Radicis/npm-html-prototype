@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('SnippetCtrl', function($scope, electron, SnippetService, $uibModalInstance,  DialogService, StatusService){
+angular.module('app').controller('SnippetCtrl', function($scope, electron, SnippetService, $uibModalInstance, $uibModal, DialogService, StatusService){
 
     $scope.selected = {};
 
@@ -11,8 +11,13 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
     };
 
     $scope.showCreate = function(){
-        console.log("Showing create");
-        SnippetService.showCreate();
+        $uibModal.open({
+            templateUrl: 'views/addSnippet.html',
+            controller: 'SnippetCtrl'
+        }).result.then(function(){
+            // Refresh collection
+            $scope.init();
+        });
     };
 
     $scope.create = function(){
@@ -20,22 +25,35 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
             DialogService.error("Please Enter Something!");
             return;
         }
-
         SnippetService.create($scope.snipName, $scope.selected.category.name,  $scope.snipHTML).then(function(){
             $uibModalInstance.close(false);
-            StatusService.log("Saved snippets to local database");
+            StatusService.log("Saved snippet to local database");
+        }, function(err){
+            DialogService.error(err);
         });
     };
 
     $scope.showCreateCategory = function(){
-        SnippetService.showCreateCategory();
+        $uibModal.open({
+            templateUrl: 'views/addCategory.html',
+            controller: 'SnippetCtrl'
+        }).result.then(function(){
+            // Refresh collection
+            $scope.init();
+        });
     };
 
     $scope.createCategory = function(){
-      SnippetService.createCategory($scope.selected.category).then(function(response){
-          $uibModalInstance.close(false);
-          StatusService.log("Saved category to local database");
-      })
+        if(!$scope.selected.categoryName){
+            DialogService.error("Please Enter Something!");
+            return;
+        }
+        SnippetService.createCategory($scope.selected.categoryName).then(function(){
+            $uibModalInstance.close(false);
+            StatusService.log("Saved category to local database");
+        }, function(err){
+            DialogService.error(err);
+        });
     };
 
     $scope.select = function(snippet){

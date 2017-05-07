@@ -8,7 +8,6 @@
         <div uib-accordion-group class="category-heading" is-open="status.open">
             <uib-accordion-heading>
                 {{category.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-
             </uib-accordion-heading>
             <uib-accordion close-others="true" ng-repeat="snip in category.snippets">
                 <div uib-accordion-group>
@@ -25,7 +24,7 @@
     </uib-accordion>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" ng-click="showCreateCategory()">Add Category</button>
-    <button type="button" class="btn btn-default pull-left" ng-click="showCreate()">Create</button>
-    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+    <button type="button" class="btn btn-default pull-left" ng-click="showCreateCategory()"><span class="glyphicon glyphicon-plus"></span> Category</button>
+    <button type="button" class="btn btn-default pull-left" ng-click="showCreate()" ng-disabled="!snippets || snippets.length==0"><span class="glyphicon glyphicon-plus"></span> Snippet</button>
+    <button type="button" class="btn btn-default" ng-click="close()"><span class="glyphicon glyphicon-remove"></span>  Close</button>
 </div>
