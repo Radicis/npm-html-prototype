@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').service('OutputService', function($q){
+angular.module('app').service('OutputService', function(){
 
     var fs = require('fs');
     var path = require('path');

@@ -13,6 +13,9 @@
                 <div uib-accordion-group>
                     <uib-accordion-heading>
                         {{snip.name}}
+                        <button class="btn btn-xs pull-right" type="button" ng-click="delete(snip)" uib-popover="Delete" popover-trigger="'mouseenter'" popover-placement="left">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
                         <button class="btn btn-xs pull-right" type="button" ng-click="select(snip.source)" uib-popover="Copy" popover-trigger="'mouseenter'" popover-placement="left">
                             <span class="glyphicon glyphicon-copy"></span>
                         </button>

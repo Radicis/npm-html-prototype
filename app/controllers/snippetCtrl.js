@@ -10,6 +10,17 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
         });
     };
 
+    $scope.deleteSnippet = function(snippet){
+        DialogService.confirm("Do you really want to delete this snippet?", function(buttonIndex){
+            if(buttonIndex)
+                SnippetService.delete(snippet).then(function(){
+                    DialogService.info("Success", "Snippet was deleted successfully!");
+                }, function(err){
+                    DialogService.error(err);
+                });
+        });
+    };
+
     $scope.showCreate = function(){
         $uibModal.open({
             templateUrl: 'views/addSnippet.html',

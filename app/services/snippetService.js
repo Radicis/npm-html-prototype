@@ -59,9 +59,9 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
             var exists= false;
             angular.forEach(allCategories, function(singleCategory){
-                if(name == singleCategory.name){
+                if(name === singleCategory.name){
                     exists = true;
-                    def.reject("Name already exists");
+                    def.reject("Category name already exists");
                 }
             });
 
@@ -71,7 +71,7 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                 if(err) {
-                    def.reject("Unable to save snippets!");
+                    def.reject("Unable to save changes to Db!");
                 }
                 def.resolve();
             });
@@ -83,8 +83,6 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
     this.create = function(name, categoryName, snippet){
         var def = $q.defer();
 
-        console.log("Checking for", categoryName);
-
         $http.get(dbPath).then(function(json){
 
             var newSnip = {
@@ -95,9 +93,7 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
             var allCategories = json.data.snippets;
             var found = false;
             angular.forEach(allCategories, function(singleCategory){
-
-                console.log("Checking", categoryName, " against", singleCategory.name);
-                if(categoryName == singleCategory.name){
+                if(categoryName === singleCategory.name){
                     singleCategory.snippets.push(newSnip);
                     found = true;
                 }
@@ -113,12 +109,16 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                 if(err) {
-                    DialogService.error("Unable to save snippets!");
-                    return console.log(err);
+                    def.reject("Unable to save changes to Db!");
                 }
                 def.resolve();
             });
         });
         return def.promise;
     };
+
+    this.delete = function(snippet){
+        // TODO: Delete from db
+    }
+
 });
