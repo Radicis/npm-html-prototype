@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module("app").service("StatusService", function(LibraryService){
     // Logs the message to the footer status area
     this.log = function(msg){
@@ -5,6 +7,7 @@ angular.module("app").service("StatusService", function(LibraryService){
         footer.innerHTML = msg;
     };
 
+    // Updates the footer indication of active libraries
     this.updateActiveLibraries = function(){
         var str = "";
         angular.forEach(LibraryService.libraries, function(library){

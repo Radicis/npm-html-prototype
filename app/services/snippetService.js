@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module("app").service("SnippetService", function($rootScope, $q, electron, $uibModal, $http, DirectoryService){
 
     var fs = require('fs');

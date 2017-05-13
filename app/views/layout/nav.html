@@ -1,15 +1,13 @@
-<div ng-controller="MainCtrl as mC">
-    <div class="navbar-brand">nwp<span>You know what would be cool?</span></div>
+<div class="navbar-brand">nwp<span>You know what would be cool?</span></div>
 
-    <ul id="workspace-controls">
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.export()"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showSnippetMenu()"><i class="glyphicon glyphicon-export" ></i>Snippets</button></li>
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showLibraryMenu()"><i class="glyphicon glyphicon-export" ></i>Libraries</button></li>
-    </ul>
+<ul id="workspace-controls" ng-controller="MainCtrl as mC">
+    <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.export()"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
+    <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showSnippetMenu()"><i class="glyphicon glyphicon-export" ></i>Snippets</button></li>
+    <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showLibraryMenu()"><i class="glyphicon glyphicon-export" ></i>Libraries</button></li>
+</ul>
 
-    <ul id="windows-controls" ng-controller="WindowCtrl as winC">
-        <li><button type="button" class="btn-control btn-window-control" ng-click="winC.minimiseWindow()"><i class="glyphicon glyphicon-minus" ></i></button></li>
-        <li><button type="button" class="btn-control btn-window-control" ng-click="winC.maximiseWindow()"><i class="glyphicon glyphicon-resize-full" ></i></button></li>
-        <li><button type="button" class="btn-control btn-window-control" ng-click="winC.closeWindow()"><i class="glyphicon glyphicon-remove-sign" ></i></button></li>
-    </ul>
-</div>
+<ul id="windows-controls" ng-controller="WindowCtrl as winC">
+    <li><button type="button" class="btn-control btn-window-control" ng-click="winC.minimiseWindow()"><i class="glyphicon glyphicon-minus" ></i></button></li>
+    <li><button type="button" class="btn-control btn-window-control" ng-click="winC.maximiseWindow()"><i class="glyphicon glyphicon-resize-full" ></i></button></li>
+    <li><button type="button" class="btn-control btn-window-control" ng-click="winC.closeWindow()"><i class="glyphicon glyphicon-remove-sign" ></i></button></li>
+</ul>

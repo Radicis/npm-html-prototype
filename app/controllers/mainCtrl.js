@@ -39,6 +39,8 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
         $rootScope.$broadcast('loading-done');
     };
 
+    // Initialises the editors
+
     vm.theme = "blackboard";
 
     vm.htmlEditor = CodeMirror(document.getElementById("code-panel-html"), {
@@ -66,6 +68,7 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
         minHeight: 50
     });
 
+    // Initialise the footer contents
     vm.initFooter = function(){
         StatusService.updateActiveLibraries();
     };
@@ -101,6 +104,7 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
         $rootScope.$broadcast('loading-done');
     };
 
+    // Exports the workspace to a specified folder
     vm.export = function(){
         $rootScope.$broadcast('loading-started');
         var title = "nwp";
@@ -120,12 +124,12 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
         });
     };
 
-    // shows the snippet modal
+    // Shows the snippet modal
     vm.showSnippetMenu = function(){
         SnippetService.show();
     };
 
-    // shows the library modal
+    // Shows the library modal
     vm.showLibraryMenu = function(){
         $uibModal.open({
             templateUrl: 'views/libraries.html',

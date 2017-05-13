@@ -255,6 +255,9 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     color:#ccc;
 }
 
+textarea {
+    resize: none;
+}
 
 /*Custom Switch styles*/
 .onoffswitch {

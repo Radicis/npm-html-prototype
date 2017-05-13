@@ -26,6 +26,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         });
     };
 
+    // Displays the create snippet modal
     vm.showCreate = function(){
         $uibModal.open({
             templateUrl: 'views/addSnippet.html',
@@ -36,6 +37,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         }, function(){});
     };
 
+    // Created a snippet
     vm.create = function(){
         if(!vm.snipHTML || !vm.snipName || !vm.selected.category){
             DialogService.error("Please Enter Something!");
@@ -52,6 +54,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         });
     };
 
+    // Displays the create category modal
     vm.showCreateCategory = function(){
         $uibModal.open({
             templateUrl: 'views/addCategory.html',
@@ -62,6 +65,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         }, function(){});
     };
 
+    // Creates a category
     vm.createCategory = function(){
         if(!vm.selected.categoryName){
             DialogService.error("Please Enter Something!");
@@ -78,6 +82,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         });
     };
 
+    // Selects a snippet and copies its source into the clipboard
     vm.select = function(snippet){
         try {
             electron.clipboard.writeText(snippet.join("\n"));
@@ -93,6 +98,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         return snip.join("\n");
     };
 
+    // Closes the modal
     vm.close = function () {
         $uibModalInstance.close(false);
     }

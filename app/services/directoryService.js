@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module("app").service("DirectoryService", function(){
 
     var fs = require('fs');
