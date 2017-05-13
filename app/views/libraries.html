@@ -1,6 +1,6 @@
 <div class="modal-header bg-primary">
     <h3 class="modal-title">
-        Activate Libraries
+        External Libraries
     </h3>
 </div>
 <form class="panel-body">
@@ -8,10 +8,13 @@
         <label>{{library.name}}</label>
         <div class="onoffswitch">
             <input type="checkbox" name="{{library.name}}Switch" class="onoffswitch-checkbox" id="{{library.name}}Switch" ng-model="library.active">
-            <label class="onoffswitch-label" for="{{library.name}}Switch"></label>
+            <label class="onoffswitch-label" for="{{library.name}}Switch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
         </div>
     </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="vm.done()"><span class="glyphicon glyphicon-ok"></span>Done</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="vm.done()"><span class="glyphicon glyphicon-ok"></span> Done</button>
 </div>

@@ -32,7 +32,7 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
     this.show = function(){
         $uibModal.open({
             templateUrl: 'views/snippets.html',
-            controller: 'SnippetCtrl'
+            controller: 'SnippetCtrl as vm'
         }).result.then(function(){
 
         }, function(){});

@@ -6,10 +6,10 @@
 <form class="panel-body" name="categoryForm">
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" ng-model="selected.categoryName" autofocus required />
+        <input type="text" class="form-control" ng-model="vm.selected.categoryName" autofocus required />
     </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="createCategory()" ng-disabled="!categoryForm.$valid"><span class="glyphicon glyphicon-ok"></span> Create</button>
-    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="vm.createCategory()" ng-disabled="!categoryForm.$valid"><span class="glyphicon glyphicon-ok"></span> Create</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="vm.close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 </div>

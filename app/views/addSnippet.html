@@ -1,4 +1,4 @@
-<div class="modal-header bg-primary" ng-init="init()">
+<div class="modal-header bg-primary" ng-init="vm.init()">
     <h3 class="modal-title">
         Add Snippet
     </h3>
@@ -6,21 +6,21 @@
 <form class="panel-body" name="snipForm">
     <div class="form-group">
         <label>Category</label>
-        <select class="form-control" ng-options="category as category.name for category in snippets" ng-model="selected.category" required autofocus>
+        <select class="form-control" ng-options="category as category.name for category in vm.snippets" ng-model="vm.selected.category" required autofocus>
             <option value="">-- Select Category --</option>
         </select>
     </div>
 
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" ng-model="snipName" required />
+        <input type="text" class="form-control" ng-model="vm.snipName" required />
     </div>
    <div class="form-group">
        <label>Code</label>
-       <textarea class="form-control code-panel-create" ng-model="snipHTML" rows="10" required></textarea>
+       <textarea class="form-control code-panel-create" ng-model="vm.snipHTML" rows="10" required></textarea>
    </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="create()" ng-disabled="!snipForm.$valid"><span class="glyphicon glyphicon-ok"></span> Create</button>
-    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="vm.create()" ng-disabled="!snipForm.$valid"><span class="glyphicon glyphicon-ok"></span> Create</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="vm.close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 </div>

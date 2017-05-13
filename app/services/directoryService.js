@@ -4,7 +4,7 @@ angular.module("app").service("DirectoryService", function(){
 
     // Verifies that the path exists and creates it if not
     this.verifyAndCreate = function(path){
-        if (!fs.existsSync(path)) {
+        if (!this.pathExists(path)) {
             fs.mkdirSync(path);
         }
     };

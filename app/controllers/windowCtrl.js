@@ -8,7 +8,6 @@ angular.module('app').controller('WindowCtrl', function(WindowService){
     vm.closeWindow = function(){
         WindowService.close();
     };
-
     // Maximises the host electron window
     vm.maximiseWindow = function(){
         WindowService.maximise();
