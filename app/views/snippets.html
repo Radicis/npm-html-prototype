@@ -9,7 +9,7 @@
             <uib-accordion-heading>
                 {{category.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </uib-accordion-heading>
-            <uib-accordion close-others="true" class="snippets" ng-repeat="snip in category.snippets">
+            <uib-accordion close-others="true" class="snippets" ng-repeat="snip in category.snippets" ng-if="category.snippets.length>0">
                 <div uib-accordion-group>
                     <uib-accordion-heading>
                         {{snip.name}}
@@ -24,6 +24,7 @@
                     <textarea class="form-control code-panel-create" rows="10" readonly>{{vm.formatSnip(snip.source)}}</textarea>
                 </div>
             </uib-accordion>
+            <div ng-if="category.snippets.length==0" class="text-center">Category is empty. Add some snippets!</div>
         </div>
     </uib-accordion>
 </div>

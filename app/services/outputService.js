@@ -22,55 +22,49 @@ angular.module('app').service('OutputService', function(electron, DirectoryServi
     this.init = function(){
         var targetDir = path.join(__dirname, 'output');
         DirectoryService.verifyAndCreate(targetDir);
+        // Delete any existing output file
+        fs.unlinkSync(path.join(targetDir, "output.html"));
     };
 
-    // Returns an array containing all of the ines in an editor
-    var getLines = function(editor){
-        var lines = "";
-        for(var i=0;i<editor.lineCount();i++){
-            lines+= "\t" + editor.getLine(i) + "\n";
-        }
-        return lines
-    };
 
     // Generates the output string for the html of the output preview windows
     var getOutput = function(html, css, js, exportFlag){
-        var output = '<!DOCTYPE html>\n<html lang="en">\n<head>\n\t<meta charset="UTF-8">\n\t\t<title>nwp - Node Web Prototype</title>';
+        var output = '<!DOCTYPE html>\n<html lang="en">\n<head>\n\t<meta charset="UTF-8">\n\t<title>nwp - Node Web Prototype</title>';
 
         // Include vendor styles
         output+= LibraryService.getCSS();
 
-        if(!exportFlag) {
-            output += '\n\t<style>\n';
-
-            output += getLines(css);
-
-            output += '\n\t</style>\n';
+        if(exportFlag) {
+            output += '\n\t<link rel="stylesheet" href="css/main.css" />\n';
         }
         else{
-            // Create main.css file and add the line of css to it
+            output += '\n\t<style>\n';
+
+            output += css;
+
+            output += '\n\t</style>\n';
         }
 
         output += '</head>\n';
 
         output += '<body>\n';
 
-        output += getLines(html);
+        output += html;
 
         output += '\n</body>\n';
 
         // Include vendor scripts
         output+= LibraryService.getJS();
 
-        if(!exportFlag) {
-            output += '<script>\n';
-
-            output += getLines(js);
-
-            output += '\n</script>\n';
+        if(exportFlag) {
+            output += '\n<script src="js/main.js"></script>\n';
         }
         else{
-            // Create main.js file and add the line of js to it
+            output += '<script>\n';
+
+            output += js;
+
+            output += '\n</script>\n';
         }
         output+='</html>';
 
@@ -92,19 +86,31 @@ angular.module('app').service('OutputService', function(electron, DirectoryServi
             // Create dir
             DirectoryService.verifyAndCreate(basePath);
 
-            // Create index.html from output.html
-            var outputFile = fs.createWriteStream(path.join(basePath, 'index.html'));
-            outputFile.write(getOutput(html, css, js, true));
+            // Create index.html
+            fs.writeFile(path.join(basePath, 'index.html'), getOutput(html, css, js, true), function(err){
+                if(err)
+                    return false;
+            });
 
             // Create css dir
             var cssDir = path.join(basePath, "css");
             DirectoryService.verifyAndCreate(cssDir);
+
             // Create style.css
+            console.log(css);
+            fs.writeFile(path.join(cssDir, 'main.css'), css, function(err){
+                if(err)
+                    return false;
+            });
 
             // Create js dir
             var jsDir = path.join(basePath, "js");
             DirectoryService.verifyAndCreate(jsDir);
-            // Create main.js
+
+            fs.writeFile(path.join(jsDir, 'main.js'), js, function(err){
+                if(err)
+                    return false;
+            });
 
             // Create img dir
             var imgDir = path.join(basePath, "img");

@@ -15,10 +15,60 @@
 
 </head>
 
-<body ng-app="app">
-<div id="navbar" ng-include="'views/layout/nav.html'"></div>
-<div id="wrapper" ng-include="'views/layout/editors.html'"></div>
-<footer ng-include="'views/layout/footer.html'"></footer>
+<body ng-app="app" ng-controller="MainCtrl as mC" >
+<div id="navbar">
+    <div class="navbar-brand">nwp<span>You know what would be cool?</span></div>
+
+    <ul id="workspace-controls">
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.export()"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showSnippetMenu()"><i class="glyphicon glyphicon-export" ></i>Snippets</button></li>
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showLibraryMenu()"><i class="glyphicon glyphicon-export" ></i>Libraries</button></li>
+    </ul>
+
+    <ul id="windows-controls" ng-controller="WindowCtrl as winC">
+        <li><button type="button" class="btn-control btn-window-control" ng-click="winC.minimiseWindow()"><i class="glyphicon glyphicon-minus" ></i></button></li>
+        <li><button type="button" class="btn-control btn-window-control" ng-click="winC.maximiseWindow()"><i class="glyphicon glyphicon-resize-full" ></i></button></li>
+        <li><button type="button" class="btn-control btn-window-control" ng-click="winC.closeWindow()"><i class="glyphicon glyphicon-remove-sign" ></i></button></li>
+    </ul>
+
+</div>
+<div id="wrapper">
+    <div class="loading" ng-show="mC.loading">Loading&#8230;</div>
+    <div ui-layout="{ flow : 'column' }">
+        <div ui-layout-container size="500px">
+            <div ui-layout="{ flow : 'row' }" id="code-panels">
+                <div ui-layout-container size="225px" min-size="50px" class="code-panel-container">
+                    <div id="html-editor-container">
+                        <div class="code-panel-header"><h4>HTML</h4></div>
+                        <div id="code-panel-html" ng-keyup="mC.initTimer()" ng-keydown="mC.clearTimer()" class="code-panel">
+                        </div>
+                    </div>
+                </div>
+                <div ui-layout-container size="225px" min-size="50px" class="code-panel-container">
+                    <div id="css-editor-container">
+                        <div class="code-panel-header"><h4>CSS</h4></div>
+                        <div id="code-panel-css" ng-keyup="mC.initTimer()" ng-keydown="mC.clearTimer()" class="code-panel">
+                        </div>
+                    </div>
+                </div>
+                <div ui-layout-container size="225px" min-size="50px" class="code-panel-container">
+                    <div id="js-editor-container">
+                        <div class="code-panel-header"><h4>JS</h4></div>
+                        <div id="code-panel-js" ng-keyup="mC.initTimer()" ng-keydown="mC.clearTimer()" class="code-panel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ui-layout-container min-size="50px" id="output-panel" ng-init="mC.initOutputFile()">
+            <iframe src="output/output.html" id="output"></iframe>
+        </div>
+    </div>
+</div>
+<footer ng-init="mC.initFooter()">
+    <div class="pull-left" id="library"></div>
+    <div id="status">Do cool things!</div>
+</footer>
 </body>
 
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>

@@ -6,7 +6,7 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
     var path = require('path');
 
     // Specifies the relative path to the json snippet db
-    var dbPath = path.join(__dirname, 'snippets/snippets.json');
+    var dbPath = path.join(__dirname, 'db/snippets.json');
 
     // Loads the snippets from the json db
     this.load = function(){

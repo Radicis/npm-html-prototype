@@ -18,7 +18,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         DialogService.confirm("Do you really want to delete this snippet?", function(buttonIndex){
             if(buttonIndex===0){
                 SnippetService.delete(categoryName, snippetName).then(function () {
-                    DialogService.info("Success", "Snippet was deleted successfully!");
+                    vm.init();
                 }, function (err) {
                     DialogService.error(err);
                 });

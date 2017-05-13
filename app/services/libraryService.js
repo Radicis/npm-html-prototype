@@ -25,7 +25,7 @@ angular.module("app").service("LibraryService", function(){
         var code = "";
         angular.forEach(this.libraries, function(library){
             if(library.active && library.jsSrc){
-                code+='\t<script src="' + library.jsSrc + '"></script>\n'
+                code+='<script src="' + library.jsSrc + '"></script>\n'
             }
         });
         return code;

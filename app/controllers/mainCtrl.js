@@ -90,12 +90,21 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
         createOutput();
     };
 
+    // Returns an array containing all of the ines in an editor
+    var getLines = function(editor){
+        var lines = "";
+        for(var i=0;i<editor.lineCount();i++){
+            lines+= editor.getLine(i) + "\n";
+        }
+        return lines
+    };
+
     // Generates the output in the preview pane
     var createOutput = function(){
         $rootScope.$broadcast('loading-started');
         // Create a time object to track the execution time
         var start = new Date().getTime();
-        OutputService.generate(vm.htmlEditor, vm.cssEditor, vm.jsEditor);
+        OutputService.generate(getLines(vm.htmlEditor), getLines(vm.cssEditor), getLines(vm.jsEditor));
         var end = new Date().getTime();
         var time = end - start;
         StatusService.log("Output generated in " + time + "ms");
@@ -112,7 +121,7 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
             properties: ['openDirectory']
         }).then(function(result){
             try {
-                OutputService.export(result[0], title, vm.htmlEditor, vm.cssEditor, vm.jsEditor);
+                OutputService.export(result[0], title, getLines(vm.htmlEditor), getLines(vm.cssEditor), getLines(vm.jsEditor));
                 $rootScope.$broadcast('loading-done');
             }
             catch(err){
