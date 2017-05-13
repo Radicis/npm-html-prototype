@@ -4,13 +4,13 @@ angular.module('app').service('WindowService', function(){
 
     var remote = require('electron').remote;
 
-    // Closes the electorn host window
+    // Closes the electron host window
     this.close = function(){
         var window = remote.getCurrentWindow();
         window.close();
     };
 
-    // Maximises the e letron host window and unmaximises it
+    // Maximises the electron host window and unmaximises it
     this.maximise = function(){
         var window = remote.getCurrentWindow();
         if (!window.isMaximized()) {
@@ -20,7 +20,7 @@ angular.module('app').service('WindowService', function(){
         }
     };
 
-    // minimises the electorn host window
+    // Minimises the electron host window
     this.minimise = function(){
         var window = remote.getCurrentWindow();
         window.minimize();

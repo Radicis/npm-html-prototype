@@ -1,24 +1,21 @@
 'use strict';
 
-angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, SnippetService, $rootScope){
+angular.module('app').controller('MainCtrl', function($scope, OutputService, WindowService, WorkspaceService, StatusService, SnippetService, $rootScope, LibraryService, $uibModal){
 
     var vm = this;
 
     // listens for loading started and sets loading variable to true
-    $scope.$on('loading-started', function(event, args) {
+    $scope.$on('loading-started', function() {
         vm.loading= true;
-        console.log("loading");
     });
 
     // listens for loading done and sets loading variable to false
-    $scope.$on('loading-done', function(event, args) {
+    $scope.$on('loading-done', function() {
         vm.loading= false;
-        console.log("done loading");
     });
 
     // Prevent default drag and drop listeners on the document
     document.addEventListener('dragover',function(event){
-        console.log("dragging");
         event.preventDefault();
         return false;
     },false);
@@ -34,7 +31,6 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
     };
 
     vm.initOutputFile = function(){
-        console.log("initing");
         $rootScope.$broadcast('loading-started');
         var path = require('path');
         OutputService.init();
@@ -74,9 +70,8 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
 
     };
 
-    // Setup time variables
     var timer;
-    // time to wait in ms before launching search
+    // time to wait before output function fires
     var time = 1000;
 
     vm.initTimer = function(){
@@ -105,6 +100,15 @@ angular.module('app').controller('MainCtrl', function($scope, OutputService, Win
 
     vm.showSnippetMenu = function(){
         SnippetService.show();
+    };
+
+    vm.showLibraryMenu = function(){
+        $uibModal.open({
+            templateUrl: 'views/libraries.html',
+            controller: 'LibraryCtrl as vm'
+        }).result.then(function(){
+            createOutput();
+        }, function(){createOutput();});
     };
 
 });

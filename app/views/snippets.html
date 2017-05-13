@@ -9,15 +9,16 @@
             <uib-accordion-heading>
                 {{category.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </uib-accordion-heading>
-            <uib-accordion close-others="true" ng-repeat="snip in category.snippets">
+            <uib-accordion close-others="true" class="snippets" ng-repeat="snip in category.snippets">
                 <div uib-accordion-group>
                     <uib-accordion-heading>
                         {{snip.name}}
-                        <button class="btn btn-xs pull-right" type="button" ng-click="delete(snip)" uib-popover="Delete" popover-trigger="'mouseenter'" popover-placement="left">
+                        <button class="btn btn-xs flat-butt pull-right" type="button" ng-click="deleteSnippet(category.name, snip.name)" >
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
-                        <button class="btn btn-xs pull-right" type="button" ng-click="select(snip.source)" uib-popover="Copy" popover-trigger="'mouseenter'" popover-placement="left">
-                            <span class="glyphicon glyphicon-copy"></span>
+
+                        <button class="btn btn-xs flat-butt pull-right" type="button" ng-click="select(snip.source)">
+                            <span class="glyphicon glyphicon-copy"></span> Copy
                         </button>
                     </uib-accordion-heading>
                     <textarea class="form-control code-panel-create" rows="10" readonly>{{formatSnip(snip.source)}}</textarea>
@@ -27,7 +28,7 @@
     </uib-accordion>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" ng-click="showCreateCategory()"><span class="glyphicon glyphicon-plus"></span> Category</button>
-    <button type="button" class="btn btn-default pull-left" ng-click="showCreate()" ng-disabled="!snippets || snippets.length==0"><span class="glyphicon glyphicon-plus"></span> Snippet</button>
-    <button type="button" class="btn btn-default" ng-click="close()"><span class="glyphicon glyphicon-remove"></span>  Close</button>
+    <button type="button" class="btn btn-primary pull-left flat-butt flat-butt-lg" ng-click="showCreateCategory()"><span class="glyphicon glyphicon-plus"></span> Category</button>
+    <button type="button" class="btn btn-primary pull-left flat-butt flat-butt-lg" ng-click="showCreate()" ng-disabled="!snippets || snippets.length==0"><span class="glyphicon glyphicon-plus"></span> Snippet</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="close()"><span class="glyphicon glyphicon-remove"></span>  Close</button>
 </div>

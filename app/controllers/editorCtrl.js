@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('EditorCtrl', function($scope){
+angular.module('app').controller('EditorCtrl', function(){
 
     var vm = this;
 

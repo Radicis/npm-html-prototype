@@ -3,25 +3,24 @@
         Add Snippet
     </h3>
 </div>
-<form class="panel-body">
-
+<form class="panel-body" name="snipForm">
     <div class="form-group">
         <label>Category</label>
-        <select ng-options="category as category.name for category in snippets" ng-model="selected.category">
-            <option>-- Select Category --</option>
+        <select class="form-control" ng-options="category as category.name for category in snippets" ng-model="selected.category" required autofocus>
+            <option value="">-- Select Category --</option>
         </select>
     </div>
 
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" ng-model="snipName" />
+        <input type="text" class="form-control" ng-model="snipName" required />
     </div>
    <div class="form-group">
        <label>Code</label>
-       <textarea class="form-control code-panel-create" ng-model="snipHTML" rows="10"></textarea>
+       <textarea class="form-control code-panel-create" ng-model="snipHTML" rows="10" required></textarea>
    </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="create()"><span class="glyphicon glyphicon-ok"></span> Create</button>
-    <button type="button" class="btn btn-default" ng-click="close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="create()" ng-disabled="!snipForm.$valid"><span class="glyphicon glyphicon-ok"></span> Create</button>
+    <button type="button" class="btn btn-primary flat-butt flat-butt-lg" ng-click="close()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 </div>

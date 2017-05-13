@@ -1,16 +1,16 @@
-angular.module("app").service("SnippetService", function($q, electron, $uibModal, $http, StatusService, DialogService){
+angular.module("app").service("SnippetService", function($rootScope, $q, electron, $uibModal, $http, DirectoryService){
 
     var fs = require('fs');
     var path = require('path');
 
+    // Specifies the relative path to the json snippet db
     var dbPath = path.join(__dirname, 'snippets/snippets.json');
 
+    // Loads the snippets from the json db
     this.load = function(){
         var def = $q.defer();
         var targetDir = path.join(__dirname, 'snippets');
-        if (!fs.existsSync(targetDir)) {
-            fs.mkdirSync(targetDir);
-        }
+        DirectoryService.verifyAndCreate(targetDir);
 
         fs.open(dbPath, "wx", function (err, fd) {
             if (err)
@@ -28,36 +28,41 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
         return def.promise;
     };
 
+    // Displays the snippets modal
     this.show = function(){
         $uibModal.open({
             templateUrl: 'views/snippets.html',
             controller: 'SnippetCtrl'
-        });
+        }).result.then(function(){
+
+        }, function(){});
     };
 
+    // Creates a new snippet category using the given name
+    // Rejects if the name already exists
     this.createCategory = function(name){
         var def = $q.defer();
         var targetDir = path.join(__dirname, 'snippets');
-        if (!fs.existsSync(targetDir)) {
-            fs.mkdirSync(targetDir);
-        }
+        DirectoryService.verifyAndCreate(targetDir);
 
         $http.get(dbPath).then(function(json){
 
+            // Create a new category object and initialise an empty snippets array
             var newCategory = {
                 name: name,
                 snippets: []
             };
 
-            var allCategories;
-
+            // If the returned json object did not have a snippets array then initialise one
             if(!json.data.snippets){
                 json.data = {snippets:[]};
             }
 
-            allCategories = json.data.snippets;
+            var allCategories = json.data.snippets;
 
             var exists= false;
+
+            // Iterate over all categories and find one with a matching name
             angular.forEach(allCategories, function(singleCategory){
                 if(name === singleCategory.name){
                     exists = true;
@@ -80,11 +85,13 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
     };
 
 
+    // Creates a new snippet with the given name in the given category
     this.create = function(name, categoryName, snippet){
         var def = $q.defer();
 
         $http.get(dbPath).then(function(json){
 
+            // Create a new snippet object
             var newSnip = {
                 name: name,
                 source: snippet.split('\n')
@@ -92,6 +99,8 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
 
             var allCategories = json.data.snippets;
             var found = false;
+
+            // Iterate over all the categories until you find a matching name
             angular.forEach(allCategories, function(singleCategory){
                 if(categoryName === singleCategory.name){
                     singleCategory.snippets.push(newSnip);
@@ -103,10 +112,7 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
             }
 
             var targetDir = path.join(__dirname, 'snippets');
-            if (!fs.existsSync(targetDir)) {
-                fs.mkdirSync(targetDir);
-            }
-
+            DirectoryService.verifyAndCreate(targetDir);
             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                 if(err) {
                     def.reject("Unable to save changes to Db!");
@@ -117,8 +123,36 @@ angular.module("app").service("SnippetService", function($q, electron, $uibModal
         return def.promise;
     };
 
-    this.delete = function(snippet){
-        // TODO: Delete from db
+    // Deletes a snippet
+    this.delete = function(categoryName, snippetName){
+        var def = $q.defer();
+        $http.get(dbPath).then(function(json){
+            var allCategories = json.data.snippets;
+            // Iterate over all the categories until you find a matching name
+            angular.forEach(allCategories, function(singleCategory){
+                // Locate the category
+                if(categoryName === singleCategory.name){
+                    // Locate the snippet by name
+                    angular.forEach(singleCategory.snippets, function(snippet, index){
+                        if(snippetName = snippet.name){
+                            // Remove from the array
+                            console.log("removing", snippet);
+                            singleCategory.snippets.splice(index, 1);
+                            // Save the json
+                            var targetDir = path.join(__dirname, 'snippets');
+                            DirectoryService.verifyAndCreate(targetDir);
+                            fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
+                                if(err) {
+                                    def.reject("Unable to save changes to Db!");
+                                }
+                                def.resolve();
+                            });
+                        }
+                    });
+                }
+            });
+        });
+        return def.promise;
     }
 
 });

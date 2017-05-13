@@ -1,23 +1,26 @@
 'use strict';
 
-angular.module('app').controller('SnippetCtrl', function($scope, electron, SnippetService, $uibModalInstance, $uibModal, DialogService, StatusService){
+angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, electron, SnippetService, $uibModalInstance, $uibModal, DialogService, StatusService){
 
     $scope.selected = {};
 
     $scope.init = function(){
+        $rootScope.$broadcast('loading-started');
         SnippetService.load().then(function(snippets){
             $scope.snippets = snippets;
+            $rootScope.$broadcast('loading-done');
         });
     };
 
-    $scope.deleteSnippet = function(snippet){
+    $scope.deleteSnippet = function(categoryName, snippetName){
         DialogService.confirm("Do you really want to delete this snippet?", function(buttonIndex){
-            if(buttonIndex)
-                SnippetService.delete(snippet).then(function(){
+            if(buttonIndex===0){
+                SnippetService.delete(categoryName, snippetName).then(function () {
                     DialogService.info("Success", "Snippet was deleted successfully!");
-                }, function(err){
+                }, function (err) {
                     DialogService.error(err);
                 });
+            }
         });
     };
 
@@ -28,7 +31,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
         }).result.then(function(){
             // Refresh collection
             $scope.init();
-        });
+        }, function(){});
     };
 
     $scope.create = function(){
@@ -36,11 +39,14 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
             DialogService.error("Please Enter Something!");
             return;
         }
+        $rootScope.$broadcast('loading-started');
         SnippetService.create($scope.snipName, $scope.selected.category.name,  $scope.snipHTML).then(function(){
             $uibModalInstance.close(false);
             StatusService.log("Saved snippet to local database");
+            $rootScope.$broadcast('loading-done');
         }, function(err){
             DialogService.error(err);
+            $rootScope.$broadcast('loading-done');
         });
     };
 
@@ -51,7 +57,7 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
         }).result.then(function(){
             // Refresh collection
             $scope.init();
-        });
+        }, function(){});
     };
 
     $scope.createCategory = function(){
@@ -59,11 +65,14 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
             DialogService.error("Please Enter Something!");
             return;
         }
+        $rootScope.$broadcast('loading-started');
         SnippetService.createCategory($scope.selected.categoryName).then(function(){
             $uibModalInstance.close(false);
             StatusService.log("Saved category to local database");
+            $rootScope.$broadcast('loading-done');
         }, function(err){
             DialogService.error(err);
+            $rootScope.$broadcast('loading-done');
         });
     };
 
@@ -80,10 +89,6 @@ angular.module('app').controller('SnippetCtrl', function($scope, electron, Snipp
 
     $scope.formatSnip = function(snip){
         return snip.join("\n");
-    };
-
-    $scope.delete = function(){
-
     };
 
     $scope.close = function () {

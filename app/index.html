@@ -21,10 +21,11 @@
     <div class="navbar-brand">nwp<span>You know what would be cool?</span></div>
 
     <ul id="workspace-controls" ng-controller="WorkspaceCtrl as wC">
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.saveWorkspace()"><i class="glyphicon glyphicon-floppy-disk" ></i>Save</button></li>
-        <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.NYI()"><i class="glyphicon glyphicon-folder-open" ></i>Load</button></li>
+        <!--<li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.saveWorkspace()"><i class="glyphicon glyphicon-floppy-disk" ></i>Save</button></li>-->
+        <!--<li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.NYI()"><i class="glyphicon glyphicon-folder-open" ></i>Load</button></li>-->
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="wC.export('Tester')"><i class="glyphicon glyphicon-export" ></i>Export</button></li>
         <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showSnippetMenu()"><i class="glyphicon glyphicon-export" ></i>Snippets</button></li>
+        <li><button type="button" class="btn-control btn-workspace-control" ng-click="mC.showLibraryMenu()"><i class="glyphicon glyphicon-export" ></i>Libraries</button></li>
     </ul>
 
     <ul id="windows-controls" ng-controller="WindowCtrl as winC">
@@ -104,7 +105,9 @@
 <script src="services/statusService.js"></script>
 <script src="services/dialogService.js"></script>
 <script src="services/snippetService.js"></script>
-
+<script src="services/directoryService.js"></script>
+<script src="services/libraryService.js"></script>
+<script src="controllers/libraryCtrl.js"></script>
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
 

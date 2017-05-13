@@ -8,10 +8,6 @@ body {
     font-size: 1em;
 }
 
-a{
-    /*  Remove selection border  */
-}
-
 #wrapper {
     position : absolute;
     width    : 100%;
@@ -19,6 +15,7 @@ a{
     top      : 60px;
     bottom   : 20px;
     background-color:#0C1021;
+    overflow:hidden;
 }
 
 footer{
@@ -31,6 +28,10 @@ footer{
     font-size:0.8em;
     text-align: right;
     padding-right:20px;
+}
+
+.stretch{
+    overflow:hidden;
 }
 
 .glyphicon{
@@ -133,6 +134,7 @@ footer{
     background:#0C1021;
     color:#fefefe;
     animation: fadein 1s;
+    overflow:hidden;
 }
 
 .code-panel-container{
@@ -146,8 +148,6 @@ footer{
 }
 
 .code-panel{
-    /*This needs to match parent height, causes issues at set height*/
-    /*scrolling fails if this is not set*/
     animation: fadein 1s;
 }
 
@@ -173,7 +173,6 @@ footer{
 }
 
 textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
-
     color:#fefefe;
     background: #0C1021;
 }
@@ -189,14 +188,6 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     display:block;
 }
 
-.category-heading{
-    border:1px solid #666;
-    border-radius: 5px;
-}
-
-.category-heading:hover{
-    border-radius: 5px;
-}
 
 
 .panel-heading:hover{
@@ -210,6 +201,84 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     background:#fefefe;
     animation: fadein 2s;
 }
+
+.panel-body{
+    max-height: 600px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.snippets{
+    max-height:400px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.flat-butt-lg {
+    padding: 6px 10px;
+}
+
+.flat-butt, .flat-butt:focus, .flat-butt:active {
+    display: inline-block;
+    margin: 0 5px;
+    background: #0C1021;
+    color: gold;
+    cursor: pointer;
+    outline: 0;
+    text-shadow: none;
+    border:1px solid #666;
+}
+
+.flat-butt:hover, .flat-butt:hover:active {
+    background: #0C1021;
+    border:1px solid #666;
+    color: #ccc;
+}
+
+.flat-butt:disabled {
+    background: #0C1021;
+    color:#ccc;
+}
+
+.flat-butt:disabled:hover {
+    background: #0C1021;
+    color:#ccc;
+}
+
+/*Custom Switch styles*/
+.onoffswitch {
+    position: relative; width: 101px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 36px; padding: 0; line-height: 36px;
+    border: 2px solid #E3E3E3; border-radius: 36px;
+    background-color: #0C1021;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 36px; margin: 0px;
+    background: #A39999;
+    position: absolute; top: 0; bottom: 0;
+    right: 63px;
+    border: 2px solid #E3E3E3; border-radius: 36px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #FFD700;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    border-color: #FFD700;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px;
+}
+
 
 /*Custom Scrollbar styles*/
 
@@ -275,6 +344,9 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     overflow-y: scroll;
 }
 
+a, a:active, button, button:active, button:hover, button:focus, a:focus {
+    outline: 0;
+}
 
 /* Custom app startup optimizations*/
 
