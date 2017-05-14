@@ -15,8 +15,6 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
         DirectoryService.verifyAndCreate(targetDir);
 
         fs.open(dbPath, "wx", function (err, fd) {
-            if (err)
-                def.reject("Unable to access local DB");
             fs.close(fd, function (err) {
                 if (err)
                     def.reject("Unable to close local DB");
@@ -141,8 +139,6 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
                             console.log("removing", snippet);
                             singleCategory.snippets.splice(index, 1);
                             // Save the json
-                            var targetDir = path.join(__dirname, 'db');
-                            DirectoryService.verifyAndCreate(targetDir);
                             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                                 if(err) {
                                     def.reject("Unable to save changes to Db!");
@@ -168,8 +164,6 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
                 if(categoryName === singleCategory.name){
                     allCategories.splice(index, 1);
                     // Save the json
-                    var targetDir = path.join(__dirname, 'db');
-                    DirectoryService.verifyAndCreate(targetDir);
                     fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                         if(err) {
                             def.reject("Unable to save changes to Db!");

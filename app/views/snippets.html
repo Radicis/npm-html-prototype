@@ -4,7 +4,7 @@
     </h3>
 </div>
 <div class="panel-body" ng-init="vm.init()">
-    <uib-accordion close-others="true" ng-repeat="category in vm.snippets">
+    <uib-accordion close-others="true" ng-repeat="category in vm.snippets" ng-if="vm.snippets.length>0">
         <div uib-accordion-group class="category-heading" is-open="status.open">
             <uib-accordion-heading>
                 {{category.name}}
@@ -32,6 +32,9 @@
             <div ng-if="category.snippets.length==0" class="text-center">Category is empty. Add some snippets!</div>
         </div>
     </uib-accordion>
+    <div ng-if="!vm.snippets || vm.snippets.length==0" class="text-center">
+        No Categories found. Why not add one?
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary pull-left flat-butt flat-butt-lg" ng-click="vm.showCreateCategory()"><span class="glyphicon glyphicon-plus"></span> Category</button>
