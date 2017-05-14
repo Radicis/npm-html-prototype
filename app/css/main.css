@@ -95,7 +95,6 @@ footer .red{
     margin-left:200px;
 }
 
-
 #windows-controls{
     float:right;
     margin:0;
@@ -187,6 +186,10 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     background: #0C1021;
 }
 
+textarea {
+    resize: none;
+}
+
 .code-panel-create{
     color:#fefefe;
     background: #0C1021;
@@ -197,8 +200,6 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
 .panel-heading a{
     display:block;
 }
-
-
 
 .panel-heading:hover{
     color:#0C1021;
@@ -223,6 +224,9 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     overflow-y:auto;
     overflow-x:hidden;
 }
+
+
+/*Custom Button styles*/
 
 .flat-butt-lg {
     padding: 6px 10px;
@@ -255,11 +259,9 @@ textarea[readonly="readonly"], textarea[readonly], .form-control[readonly] {
     color:#ccc;
 }
 
-textarea {
-    resize: none;
-}
 
 /*Custom Switch styles*/
+
 .onoffswitch {
     position: relative; width: 550px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
@@ -387,6 +389,7 @@ a, a:active, button, button:active, button:hover, button:focus, a:focus {
 }
 
 /* Absolute Center Spinner */
+
 .loading {
     position: fixed;
     z-index: 999;

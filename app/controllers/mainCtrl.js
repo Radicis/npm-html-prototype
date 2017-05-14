@@ -73,6 +73,8 @@ angular.module('app').controller('MainCtrl', function($scope, electron, OutputSe
         StatusService.updateActiveLibraries();
     };
 
+    // Typing timers
+
     var timer;
     // time to wait before output function fires
     var time = 1000;
