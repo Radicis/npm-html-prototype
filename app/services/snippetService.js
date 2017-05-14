@@ -11,7 +11,7 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
     // Loads the snippets from the json db
     this.load = function(){
         var def = $q.defer();
-        var targetDir = path.join(__dirname, 'snippets');
+        var targetDir = path.join(__dirname, 'db');
         DirectoryService.verifyAndCreate(targetDir);
 
         fs.open(dbPath, "wx", function (err, fd) {
