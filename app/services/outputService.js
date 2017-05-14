@@ -23,7 +23,8 @@ angular.module('app').service('OutputService', function(electron, DirectoryServi
         var targetDir = path.join(__dirname, 'output');
         DirectoryService.verifyAndCreate(targetDir);
         // Delete any existing output file
-        fs.unlinkSync(path.join(targetDir, "output.html"));
+        if(DirectoryService.exists(targetDir))
+            fs.unlinkSync(path.join(targetDir, "output.html"));
     };
 
 
