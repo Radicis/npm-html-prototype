@@ -12,11 +12,6 @@ Created as my final project for Advanced Web Publishing applications module to d
 
 * nwp
 
-## Release History
-
-*0.2 - In progress
-
 ## Issues
 
-A Work in progress. Not optimised for linux/mac yet.
-Many features placeholder.
+Not optimised for linux/mac.
