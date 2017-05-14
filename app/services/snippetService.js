@@ -44,7 +44,7 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
     // Rejects if the name already exists
     this.createCategory = function(name){
         var def = $q.defer();
-        var targetDir = path.join(__dirname, 'snippets');
+        var targetDir = path.join(__dirname, 'db');
         DirectoryService.verifyAndCreate(targetDir);
 
         $http.get(dbPath).then(function(json){
@@ -113,7 +113,7 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
                 def.reject("No Category Found");
             }
 
-            var targetDir = path.join(__dirname, 'snippets');
+            var targetDir = path.join(__dirname, 'db');
             DirectoryService.verifyAndCreate(targetDir);
             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                 if(err) {
@@ -141,7 +141,7 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
                             console.log("removing", snippet);
                             singleCategory.snippets.splice(index, 1);
                             // Save the json
-                            var targetDir = path.join(__dirname, 'snippets');
+                            var targetDir = path.join(__dirname, 'db');
                             DirectoryService.verifyAndCreate(targetDir);
                             fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
                                 if(err) {
@@ -150,6 +150,31 @@ angular.module("app").service("SnippetService", function($rootScope, $q, electro
                                 def.resolve();
                             });
                         }
+                    });
+                }
+            });
+        });
+        return def.promise;
+    };
+
+    // Deletes a category
+    this.deleteCategory = function(categoryName){
+        var def = $q.defer();
+        $http.get(dbPath).then(function(json){
+            var allCategories = json.data.snippets;
+            // Iterate over all the categories until you find a matching name
+            angular.forEach(allCategories, function(singleCategory, index){
+                // Locate the category
+                if(categoryName === singleCategory.name){
+                    allCategories.splice(index, 1);
+                    // Save the json
+                    var targetDir = path.join(__dirname, 'db');
+                    DirectoryService.verifyAndCreate(targetDir);
+                    fs.writeFile(dbPath, JSON.stringify(json.data), function(err) {
+                        if(err) {
+                            def.reject("Unable to save changes to Db!");
+                        }
+                        def.resolve();
                     });
                 }
             });

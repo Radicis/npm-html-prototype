@@ -14,6 +14,18 @@ angular.module('app').controller('SnippetCtrl', function($scope, $rootScope, ele
         });
     };
 
+    vm.deleteCategory = function(categoryName){
+        DialogService.confirm("Do you really want to delete this category?", function(buttonIndex){
+            if(buttonIndex===0){
+                SnippetService.deleteCategory(categoryName).then(function () {
+                    vm.init();
+                }, function (err) {
+                    DialogService.error(err);
+                });
+            }
+        });
+    };
+
     vm.deleteSnippet = function(categoryName, snippetName){
         DialogService.confirm("Do you really want to delete this snippet?", function(buttonIndex){
             if(buttonIndex===0){
